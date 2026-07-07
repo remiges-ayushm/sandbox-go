@@ -1,0 +1,168 @@
+{
+  "context": {
+    "version": "2.0.0",
+    "action": "on_select",
+    "domain": "beckn.one:commerce:retail:1.0",
+    "timestamp": "2025-01-27T10:05:02+10:00",
+    "message_id": "msg-on-select-001",
+    "transaction_id": "txn-macadamia-journey-001",
+    "bap_id": "aloha-buyer-app.hawaii.com",
+    "bap_uri": "https://aloha-buyer-app.hawaii.com",
+    "bpp_id": "aloha-seller-platform.hawaii.com",
+    "bpp_uri": "https://aloha-seller-platform.hawaii.com",
+    "ttl": "PT30S"
+  },
+  "message": {
+    "order": {
+      "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/draft/schema/core/v2/context.jsonld",
+      "@type": "beckn:Order",
+      "beckn:orderStatus": "QUOTE_PROVIDED",
+      "beckn:seller": "provider-mauna-loa-store",
+      "beckn:orderItems": [
+        {
+          "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/draft/schema/core/v2/context.jsonld",
+          "@type": "beckn:OrderItem",
+          "beckn:lineId": "line-001",
+          "beckn:orderedItem": "item-macadamia-honey-roasted-150g",
+          "beckn:acceptedOffer": {
+            "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/draft/schema/core/v2/context.jsonld",
+            "@type": "beckn:Offer",
+            "beckn:id": "offer-honey-roasted-150g",
+            "beckn:descriptor": {
+              "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/draft/schema/core/v2/context.jsonld",
+              "@type": "beckn:Descriptor",
+              "schema:name": "Honey Roasted Hawaiian Macadamia Nuts",
+              "beckn:shortDesc": "Premium honey-roasted macadamia nuts from Big Island farms",
+              "schema:image": [
+                {
+                  "@type": "schema:ImageObject",
+                  "schema:url": "https://cdn.aloha-foods.com/products/macadamia-honey-roasted-150g-front.jpg"
+                }
+              ]
+            },
+            "beckn:price": {
+              "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/draft/schema/core/v2/context.jsonld",
+              "@type": "schema:PriceSpecification",
+              "schema:priceCurrency": "USD",
+              "schema:price": 12.99
+            }
+          },
+          "beckn:quantity": 3,
+          "beckn:price": {
+            "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/draft/schema/core/v2/context.jsonld",
+            "@type": "schema:PriceSpecification",
+            "schema:priceCurrency": "USD",
+            "schema:price": 38.97
+          },
+          "beckn:orderItemAttributes": {
+            "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/draft/schema/GroceryItem/v1/context.jsonld",
+            "@type": "beckn:GroceryItem",
+            "grocery:brand": "Mauna Loa Premium",
+            "grocery:weight": "150g",
+            "grocery:packaging": "Resealable bag",
+            "grocery:origin": "Big Island, Hawaii, USA",
+            "grocery:category": "packaged_food",
+            "grocery:subcategory": "nuts_and_seeds",
+            "grocery:shelfLifeDays": 365,
+            "grocery:ingredients": ["Macadamia nuts", "Hawaiian honey", "Sea salt"],
+            "grocery:allergens": ["Tree nuts"],
+            "grocery:nutritionalInfo": {
+              "servingSize": "28g",
+              "servingsPerContainer": 5,
+              "calories": 204,
+              "totalFat": "21g",
+              "protein": "2g",
+              "carbohydrates": "4g"
+            },
+            "grocery:certifications": ["USDA Organic", "Non-GMO"],
+            "grocery:storageInstructions": "Store in a cool, dry place"
+          }
+        }
+      ],
+      "beckn:orderValue": {
+        "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/draft/schema/core/v2/context.jsonld",
+        "@type": "schema:PriceSpecification",
+        "schema:priceCurrency": "USD",
+        "schema:price": 45.95,
+        "beckn:components": [
+          {
+            "@type": "beckn:PriceComponent",
+            "beckn:type": "UNIT",
+            "beckn:value": 38.97,
+            "beckn:currency": "USD",
+            "beckn:description": "Item price (3 × $12.99)"
+          },
+          {
+            "@type": "beckn:PriceComponent",
+            "beckn:type": "FEE",
+            "beckn:value": 5.00,
+            "beckn:currency": "USD",
+            "beckn:description": "Delivery charges"
+          },
+          {
+            "@type": "beckn:PriceComponent",
+            "beckn:type": "TAX",
+            "beckn:value": 1.98,
+            "beckn:currency": "USD",
+            "beckn:description": "Tax (4.5%)"
+          }
+        ]
+      },
+      "beckn:fulfillment": {
+        "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/draft/schema/core/v2/context.jsonld",
+        "@type": "beckn:Fulfillment",
+        "beckn:id": "fulfillment-hotel-delivery",
+        "beckn:mode": "DELIVERY",
+        "beckn:status": "SERVICEABLE",
+        "beckn:deliveryAttributes": {
+          "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/draft/schema/GroceryDelivery/v1/context.jsonld",
+          "@type": "GroceryDelivery",
+          "deliveryType": "home_delivery",
+          "estimatedDeliveryTime": "2025-01-28T16:00:00+10:00",
+          "deliveryWindow": {
+            "startTime": "2025-01-28T14:00:00+10:00",
+            "endTime": "2025-01-28T18:00:00+10:00"
+          },
+          "pickupLocation": {
+            "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/draft/schema/core/v2/context.jsonld",
+            "@type": "beckn:Location",
+            "beckn:id": "store-mauna-loa-honolulu",
+            "beckn:descriptor": {
+              "@type": "beckn:Descriptor",
+              "schema:name": "Mauna Loa Store - Honolulu"
+            },
+            "beckn:address": {
+              "@type": "schema:PostalAddress",
+              "schema:streetAddress": "1450 Ala Moana Blvd",
+              "schema:addressLocality": "Honolulu",
+              "schema:addressRegion": "HI",
+              "schema:postalCode": "96814",
+              "schema:addressCountry": "US"
+            },
+            "beckn:geo": {
+              "type": "Point",
+              "coordinates": [-157.8420, 21.2905]
+            }
+          },
+          "deliveryLocation": {
+            "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/draft/schema/core/v2/context.jsonld",
+            "@type": "beckn:Location",
+            "beckn:address": {
+              "@type": "schema:PostalAddress",
+              "schema:streetAddress": "2365 Kalakaua Ave",
+              "schema:addressLocality": "Honolulu",
+              "schema:addressRegion": "HI",
+              "schema:postalCode": "96815",
+              "schema:addressCountry": "US"
+            },
+            "beckn:geo": {
+              "type": "Point",
+              "coordinates": [-157.8267, 21.2770]
+            },
+            "beckn:additionalInfo": "Royal Hawaiian Hotel, Room 815"
+          }
+        }
+      }
+    }
+  }
+}

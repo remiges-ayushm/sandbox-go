@@ -1,0 +1,179 @@
+{
+  "context": {
+    "version": "2.0.0",
+    "action": "on_select",
+    "domain": "beckn.one:commerce:aviation:1.0",
+    "timestamp": "2025-12-01T08:05:02-08:00",
+    "message_id": "msg-on-select-flight-001",
+    "transaction_id": "txn-flight-sfo-jfk-001",
+    "bap_id": "travel-booking-app.example.com",
+    "bap_uri": "https://travel-booking-app.example.com",
+    "bpp_id": "delta-airlines-platform.com",
+    "bpp_uri": "https://delta-airlines-platform.com",
+    "ttl": "PT30S"
+  },
+  "message": {
+    "order": {
+      "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/draft/schema/core/v2/context.jsonld",
+      "@type": "beckn:Order",
+      "beckn:orderStatus": "QUOTE_PROVIDED",
+      "beckn:seller": "provider-delta-airlines",
+      "beckn:orderItems": [
+        {
+          "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/draft/schema/core/v2/context.jsonld",
+          "@type": "beckn:OrderItem",
+          "beckn:lineId": "line-001",
+          "beckn:orderedItem": "item-flight-dl145-economy",
+          "beckn:acceptedOffer": {
+            "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/draft/schema/core/v2/context.jsonld",
+            "@type": "beckn:Offer",
+            "beckn:id": "offer-dl145-economy-base",
+            "beckn:descriptor": {
+              "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/draft/schema/core/v2/context.jsonld",
+              "@type": "beckn:Descriptor",
+              "schema:name": "Main Cabin Economy Fare",
+              "beckn:shortDesc": "Standard economy fare with carry-on bag included"
+            },
+            "beckn:price": {
+              "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/draft/schema/core/v2/context.jsonld",
+              "@type": "schema:PriceSpecification",
+              "schema:priceCurrency": "USD",
+              "schema:price": 280.00
+            },
+            "beckn:addOnItems": [
+              {
+                "@type": "schema:Offer",
+                "@id": "addon-item-checked-baggage",
+                "schema:name": "Checked Baggage",
+                "schema:description": "1 checked bag up to 23kg",
+                "schema:price": {
+                  "@type": "schema:PriceSpecification",
+                  "schema:priceCurrency": "USD",
+                  "schema:price": 35.00
+                }
+              },
+              {
+                "@type": "schema:Offer",
+                "@id": "addon-item-seat-selection",
+                "schema:name": "Seat Selection",
+                "schema:description": "Choose your preferred seat (Window seat 12A)",
+                "schema:price": {
+                  "@type": "schema:PriceSpecification",
+                  "schema:priceCurrency": "USD",
+                  "schema:price": 25.00
+                }
+              },
+              {
+                "@type": "schema:Offer",
+                "@id": "addon-item-travel-insurance",
+                "schema:name": "Travel Insurance",
+                "schema:description": "Trip cancellation and medical coverage",
+                "schema:price": {
+                  "@type": "schema:PriceSpecification",
+                  "schema:priceCurrency": "USD",
+                  "schema:price": 25.00
+                }
+              }
+            ]
+          },
+          "beckn:quantity": 1,
+          "beckn:price": {
+            "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/draft/schema/core/v2/context.jsonld",
+            "@type": "schema:PriceSpecification",
+            "schema:priceCurrency": "USD",
+            "schema:price": 280.00
+          },
+          "beckn:orderItemAttributes": {
+            "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/draft/schema/FlightService/v1/context.jsonld",
+            "@type": "beckn:FlightService",
+            "flight:flightNumber": "DL145",
+            "flight:airline": "Delta Air Lines",
+            "flight:airlineCode": "DL",
+            "flight:aircraft": {
+              "type": "Boeing 767-400ER",
+              "registration": "N845MH"
+            },
+            "flight:departureAirport": {
+              "code": "SFO",
+              "name": "San Francisco International Airport",
+              "terminal": "2"
+            },
+            "flight:arrivalAirport": {
+              "code": "JFK",
+              "name": "John F. Kennedy International Airport",
+              "terminal": "4"
+            },
+            "flight:departureTime": "2025-12-15T09:30:00-08:00",
+            "flight:arrivalTime": "2025-12-15T18:15:00-05:00",
+            "flight:duration": "PT5H45M",
+            "flight:distance": 2586,
+            "flight:distanceUnit": "MI",
+            "flight:cabinClass": "ECONOMY",
+            "flight:fareClass": "M",
+            "flight:fareType": "MAIN_CABIN",
+            "flight:stopCount": 0,
+            "flight:amenities": {
+              "wifi": true,
+              "power": true,
+              "entertainment": true,
+              "meal": "Complimentary snacks and beverages",
+              "seatPitch": "31-32 inches"
+            },
+            "flight:baggage": {
+              "carryOn": {
+                "included": 1,
+                "maxWeight": 10,
+                "maxWeightUnit": "KG"
+              },
+              "personalItem": {
+                "included": 1
+              },
+              "checked": {
+                "includedCount": 0,
+                "feePerBag": 35.00,
+                "maxWeight": 23,
+                "maxWeightUnit": "KG"
+              }
+            }
+          }
+        }
+      ],
+      "beckn:orderValue": {
+        "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/draft/schema/core/v2/context.jsonld",
+        "@type": "schema:PriceSpecification",
+        "schema:priceCurrency": "USD",
+        "schema:price": 307.70,
+        "beckn:components": [
+          {
+            "@type": "beckn:PriceComponent",
+            "beckn:type": "UNIT",
+            "beckn:value": 280.00,
+            "beckn:currency": "USD",
+            "beckn:description": "Base fare (1 × $280.00)"
+          },
+          {
+            "@type": "beckn:PriceComponent",
+            "beckn:type": "FEE",
+            "beckn:value": 15.00,
+            "beckn:currency": "USD",
+            "beckn:description": "Airport facility charges"
+          },
+          {
+            "@type": "beckn:PriceComponent",
+            "beckn:type": "TAX",
+            "beckn:value": 12.70,
+            "beckn:currency": "USD",
+            "beckn:description": "Federal excise tax (4.5%)"
+          }
+        ]
+      },
+      "beckn:fulfillment": {
+        "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/draft/schema/core/v2/context.jsonld",
+        "@type": "beckn:Fulfillment",
+        "beckn:id": "fulfillment-dl145-flight",
+        "beckn:mode": "FLIGHT",
+        "beckn:status": "AVAILABLE"
+      }
+    }
+  }
+}

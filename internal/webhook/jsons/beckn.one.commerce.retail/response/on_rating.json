@@ -1,0 +1,30 @@
+{
+  "context": {
+    "version": "2.0.0",
+    "action": "on_rating",
+    "domain": "beckn.one:commerce:retail:1.0",
+    "timestamp": "2025-01-28T18:30:02+10:00",
+    "message_id": "msg-on-rating-001",
+    "transaction_id": "txn-macadamia-journey-001",
+    "bap_id": "aloha-buyer-app.hawaii.com",
+    "bap_uri": "https://aloha-buyer-app.hawaii.com",
+    "bpp_id": "aloha-seller-platform.hawaii.com",
+    "bpp_uri": "https://aloha-seller-platform.hawaii.com",
+    "ttl": "PT30S"
+  },
+  "message": {
+    "received": true,
+    "aggregate": {
+      "count": 348,
+      "value": 4.81,
+      "best": 5,
+      "worst": 1
+    },
+    "feedbackForm": {
+      "id": "detailed-feedback-form-001",
+      "name": "Detailed Product Feedback",
+      "url": "https://feedback.maunaloa.com/detailed/order-macadamia-20250127-001",
+      "mime_type": "text/html"
+    }
+  }
+}

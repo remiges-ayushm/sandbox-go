@@ -1,0 +1,119 @@
+{
+  "context": {
+    "version": "2.0.0",
+    "networkId": "beckn.one/testnet-retail",
+    "bapId": "bap1.apexsb.iontest.in",
+    "bapUri": "https://bap1.apexsb.iontest.in/bap/receiver",
+    "transactionId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "messageId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "timestamp": "2026-06-01T08:00:00.000Z",
+    "ttl": "PT30S",
+    "location": {
+      "city": {
+        "code": "JKT"
+      },
+      "country": {
+        "code": "ID"
+      }
+    },
+    "action": "on_discover",
+    "bppId": "bpp1.apexsb.iontest.in",
+    "bppUri": "https://bpp1.apexsb.iontest.in/bpp/receiver"
+  },
+  "message": {
+    "catalogs": [
+      {
+        "id": "cat-home-b2c-001",
+        "descriptor": {
+          "name": "Home & Garden - AUC-R Catalog",
+          "shortDesc": "Katalog Home & Garden untuk pola AUC-R di jaringan ION Trade"
+        },
+        "provider": {
+          "id": "PROV-HOME-JKT-001",
+          "descriptor": {
+            "name": "TokoRumah & Taman Jakarta",
+            "shortDesc": "Spesialis perlengkapan rumah dan tanaman hias, pengiriman se-Jabodetabek."
+          }
+        },
+        "resources": [
+          {
+            "id": "res-home-001",
+            "descriptor": {
+              "name": "Philips LED Bulb 10W E27 - Kuning Warm White 3000K",
+              "shortDesc": "Lampu LED 10W setara 75W, E27, 3000K warm white, 1055lm, umur 15000 jam",
+              "longDesc": "Philips LED Bulb 10W menggantikan lampu pijar 75W dengan konsumsi daya 87% lebih hemat. Fluks cahaya 1055 lumen, suhu warna 3000K (warm white) cocok untuk ruang keluarga dan kamar tidur. Fitting E27 standar. Umur pemakaian 15.000 jam (13,6 tahun/3 jam per hari). Garansi 2 tahun."
+            },
+            "resourceAttributes": {
+              "@context": "https://schema.ion.id/extensions/trade/resource/v1/context.jsonld",
+              "@type": "ion:IONTradeResource",
+              "quantity": {
+                "value": 1,
+                "unit": "piece"
+              },
+              "resourceStructure": "PLAIN",
+              "resourceTangibility": "PHYSICAL",
+              "logisticsServiceType": "HYPERLOCAL",
+              "ageRestricted": false,
+              "countryOfOrigin": "CHN",
+              "images": [
+                "https://cdn.example.ion.id/products/phi-led-10w-e27-ww-front.jpg"
+              ],
+              "availability": {
+                "status": "IN_STOCK",
+                "maxOrderQty": 300,
+                "backorderAllowed": false,
+                "substitutionAllowed": false
+              },
+              "identity": {
+                "brand": "Philips",
+                "sku": "PHI-LED-10W-E27-WW"
+              },
+              "price": {
+                "currency": "IDR",
+                "value": "35000"
+              }
+            }
+          },
+          {
+            "id": "res-home-002",
+            "descriptor": {
+              "name": "Tanaman Monstera Deliciosa - Pot 20cm, Tinggi 40-50cm",
+              "shortDesc": "Tanaman hias indoor Monstera Deliciosa dalam pot plastik 20cm, tinggi 40-50cm",
+              "longDesc": "Monstera Deliciosa atau Janda Bolong adalah tanaman hias tropis yang populer untuk interior modern. Dikirim dalam pot plastik 20cm dengan media tanam komposit. Tinggi tanaman 40-50cm dari dasar pot. Tumbuh optimal di dalam ruangan dengan cahaya terang tidak langsung. Termasuk pupuk organik starter."
+            },
+            "resourceAttributes": {
+              "@context": "https://schema.ion.id/extensions/trade/resource/v1/context.jsonld",
+              "@type": "ion:IONTradeResource",
+              "quantity": {
+                "value": 1,
+                "unit": "piece"
+              },
+              "resourceStructure": "PLAIN",
+              "resourceTangibility": "PHYSICAL",
+              "logisticsServiceType": "HYPERLOCAL",
+              "ageRestricted": false,
+              "countryOfOrigin": "IDN",
+              "images": [
+                "https://cdn.example.ion.id/products/nplant-monstera-20cm-front.jpg"
+              ],
+              "availability": {
+                "status": "IN_STOCK",
+                "maxOrderQty": 25,
+                "backorderAllowed": false,
+                "substitutionAllowed": false
+              },
+              "identity": {
+                "brand": "Nusantara Plants",
+                "sku": "NPLANT-MONSTERA-20CM"
+              },
+              "price": {
+                "currency": "IDR",
+                "value": "185000"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "context": {
+    "version": "2.0.0",
+    "action": "on_rate",
+    "networkId": "nfh.global/testnet-evcharging",
+    "bapId": "example-bap.com",
+    "bapUri": "https://example-bap.com/pilot/bap/energy/v2",
+    "transactionId": "2b4d69aa-22e4-4c78-9f56-5a7b9e2b2002",
+    "messageId": "89ee20fe-b592-48b0-a5c5-e38f6b90e569",
+    "timestamp": "2025-01-27T12:00:30Z",
+    "ttl": "PT30S",
+    "bppId": "example-bpp.com",
+    "bppUri": "https://example-bpp.com/pilot/bpp/energy/v2"
+  },
+  "message": {
+    "ratings": [
+      {
+        "target": {
+          "id": "fulfillment-001",
+          "descriptor": {
+            "name": "Charging Session Fulfillment",
+            "code": "FULFILLMENT"
+          }
+        },
+        "range": {
+          "min": 1,
+          "max": 5,
+          "value": 4
+        }
+      },
+      {
+        "target": {
+          "id": "IND*ecopower-charging*cs-01*IN*ECO*BTM*01*CCS2*A*CCS2-A",
+          "descriptor": {
+            "name": "CCS2 Charging Connector",
+            "code": "ITEM"
+          }
+        },
+        "range": {
+          "min": 1,
+          "max": 5,
+          "value": 3
+        }
+      }
+    ]
+  },
+  "error": {}
+}

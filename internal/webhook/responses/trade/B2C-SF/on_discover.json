@@ -1,0 +1,158 @@
+{
+  "context": {
+    "version": "2.0.0",
+    "action": "on_discover",
+    "networkId": "beckn.one/testnet-retail",
+    "bapId": "bap1.apexsb.iontest.in",
+    "bapUri": "https://bap1.apexsb.iontest.in/bap/receiver",
+    "bppId": "bpp1.apexsb.iontest.in",
+    "bppUri": "https://bpp1.apexsb.iontest.in/bpp/receiver",
+    "transactionId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "messageId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "timestamp": "2026-05-15T10:30:00.000Z",
+    "ttl": "PT30S",
+    "location": {
+      "city": {
+        "code": "JKT"
+      },
+      "country": {
+        "code": "ID"
+      }
+    }
+  },
+  "message": {
+    "catalogs": [
+      {
+        "id": "catalog-b2c-sf-001",
+        "descriptor": {
+          "name": "B2C Single Fulfilment Catalog",
+          "shortDesc": "Consumer electronics, fashion, and FMCG products with same-day hyperlocal delivery in Jakarta"
+        },
+        "provider": {
+          "id": "prov-b2c-sf",
+          "descriptor": {
+            "name": "TokoBagus Jakarta",
+            "shortDesc": "Trusted seller for everyday consumer goods",
+            "longDesc": "TokoBagus Jakarta offers a curated selection of electronics, apparel, and daily essentials delivered within 2 hours across Jakarta."
+          }
+        },
+        "resources": [
+          {
+            "id": "res-b2c-sf-001",
+            "descriptor": {
+              "name": "SoundWave TWS X200 Wireless Earbuds",
+              "shortDesc": "True wireless stereo earbuds with 24hr battery and active noise cancellation",
+              "longDesc": "SoundWave TWS X200 delivers premium audio with ANC, 6mm drivers, IPX5 water resistance, and a 24-hour total battery life. Compatible with Android and iOS."
+            },
+            "resourceAttributes": {
+              "@context": "https://schema.ion.id/extensions/trade/resource/v1/context.jsonld",
+              "@type": "ion:IONTradeResource",
+              "quantity": {
+                "value": 1,
+                "unit": "piece"
+              },
+              "resourceStructure": "PLAIN",
+              "resourceTangibility": "PHYSICAL",
+              "logisticsServiceType": "HYPERLOCAL",
+              "ageRestricted": false,
+              "countryOfOrigin": "CHN",
+              "images": [
+                "https://cdn.example.ion.id/products/sw-tws-x200-black-front.jpg"
+              ],
+              "availability": {
+                "status": "IN_STOCK",
+                "maxOrderQty": 20,
+                "backorderAllowed": false,
+                "substitutionAllowed": false
+              },
+              "identity": {
+                "brand": "SoundWave",
+                "sku": "SW-TWS-X200-BLK"
+              },
+              "price": {
+                "currency": "IDR",
+                "value": "299000"
+              }
+            }
+          },
+          {
+            "id": "res-b2c-sf-002",
+            "descriptor": {
+              "name": "ThreadCraft Premium Cotton T-Shirt — White / L",
+              "shortDesc": "Heavyweight 220gsm combed cotton unisex tee, pre-shrunk",
+              "longDesc": "Made from 100% combed cotton (220gsm), this unisex tee is pre-shrunk, double-stitched at the hem, and printed with non-toxic water-based ink. Available in White, size L."
+            },
+            "resourceAttributes": {
+              "@context": "https://schema.ion.id/extensions/trade/resource/v1/context.jsonld",
+              "@type": "ion:IONTradeResource",
+              "quantity": {
+                "value": 1,
+                "unit": "piece"
+              },
+              "resourceStructure": "PLAIN",
+              "resourceTangibility": "PHYSICAL",
+              "logisticsServiceType": "HYPERLOCAL",
+              "ageRestricted": false,
+              "countryOfOrigin": "IDN",
+              "images": [
+                "https://cdn.example.ion.id/products/tc-tshirt-wht-l-front.jpg"
+              ],
+              "availability": {
+                "status": "IN_STOCK",
+                "maxOrderQty": 50,
+                "backorderAllowed": false,
+                "substitutionAllowed": true
+              },
+              "identity": {
+                "brand": "ThreadCraft",
+                "sku": "TC-TSHIRT-WHT-L"
+              },
+              "price": {
+                "currency": "IDR",
+                "value": "89000"
+              }
+            }
+          },
+          {
+            "id": "res-b2c-sf-003",
+            "descriptor": {
+              "name": "NusaTea Organic Green Tea — 100g",
+              "shortDesc": "Single-origin organic green tea from Puncak highlands, loose leaf 100g",
+              "longDesc": "Hand-picked from certified organic tea gardens in the Puncak highlands of West Java. Light, grassy flavour with natural antioxidants. Packaging: resealable kraft pouch."
+            },
+            "resourceAttributes": {
+              "@context": "https://schema.ion.id/extensions/trade/resource/v1/context.jsonld",
+              "@type": "ion:IONTradeResource",
+              "quantity": {
+                "value": 100,
+                "unit": "gram"
+              },
+              "resourceStructure": "PLAIN",
+              "resourceTangibility": "PHYSICAL",
+              "logisticsServiceType": "HYPERLOCAL",
+              "ageRestricted": false,
+              "countryOfOrigin": "IDN",
+              "images": [
+                "https://cdn.example.ion.id/products/nusatea-green-100g-front.jpg"
+              ],
+              "availability": {
+                "status": "IN_STOCK",
+                "maxOrderQty": 100,
+                "backorderAllowed": true,
+                "substitutionAllowed": false
+              },
+              "identity": {
+                "brand": "NusaTea",
+                "sku": "NT-GREENTEA-100G"
+              },
+              "price": {
+                "currency": "IDR",
+                "value": "45000"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

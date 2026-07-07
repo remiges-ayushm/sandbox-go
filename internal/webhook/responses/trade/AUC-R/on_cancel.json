@@ -1,0 +1,137 @@
+{
+  "context": {
+    "version": "2.0.0",
+    "action": "on_cancel",
+    "networkId": "beckn.one/testnet-retail",
+    "bapId": "bap1.apexsb.iontest.in",
+    "bapUri": "https://bap1.apexsb.iontest.in/bap/receiver",
+    "bppId": "bpp1.apexsb.iontest.in",
+    "bppUri": "https://bpp1.apexsb.iontest.in/bpp/receiver",
+    "transactionId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "messageId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "timestamp": "2026-05-15T10:30:00.000Z",
+    "ttl": "PT30S",
+    "location": {
+      "city": {
+        "code": "JKT"
+      },
+      "country": {
+        "code": "ID"
+      }
+    }
+  },
+  "message": {
+    "contract": {
+      "commitments": [
+        {
+          "id": "COMMIT-L01",
+          "status": {
+            "descriptor": {
+              "code": "CLOSED"
+            }
+          },
+          "resources": [
+            {
+              "id": "res-auc-r-001",
+              "descriptor": {
+                "name": "Sample Item (AUC-R)",
+                "shortDesc": "Sample product for AUC-R pattern"
+              },
+              "resourceAttributes": {
+                "@context": "https://schema.ion.id/extensions/trade/resource/v1/context.jsonld",
+                "@type": "ion:IONTradeResource",
+                "quantity": {
+                  "value": 1,
+                  "unit": "piece"
+                },
+                "resourceStructure": "PLAIN",
+                "resourceTangibility": "PHYSICAL",
+                "logisticsServiceType": "HYPERLOCAL",
+                "ageRestricted": false,
+                "countryOfOrigin": "IDN",
+                "images": [
+                  "https://cdn.example.ion.id/products/item-primary.jpg"
+                ],
+                "availability": {
+                  "status": "IN_STOCK",
+                  "maxOrderQty": 50,
+                  "backorderAllowed": false,
+                  "substitutionAllowed": false
+                },
+                "identity": {
+                  "brand": "Procurement",
+                  "sku": "RFQ-001"
+                }
+              }
+            }
+          ],
+          "offer": {
+            "id": "OFFER-AUC-R-001",
+            "resourceIds": [
+              "res-auc-r-001"
+            ],
+            "descriptor": {
+              "name": "Offer for AUC-R"
+            },
+            "offerAttributes": {
+              "@context": "https://schema.ion.id/extensions/trade/offer/v1/context.jsonld",
+              "@type": "ion:IONTradeOffer",
+              "cancellationPolicy": "ion://policy/cancel.mto.nofee-before-prepare",
+              "cancellationAllowedReasons": [
+                "CHANGE_OF_MIND"
+              ],
+              "returnable": false,
+              "returnPolicy": "ion://policy/return.standard.none",
+              "warrantyPolicy": "ion://policy/warranty.standard.none",
+              "disputePolicy": "ion://policy/dispute.consumer.bpsk",
+              "timeToShip": "PT24H",
+              "availableOnCod": false,
+              "proofOfDeliveryType": "PHOTO",
+              "contactDetailsConsumerCare": "Customer Service,cs@example.ion.id,021-500000",
+              "displayLanguage": [
+                "id",
+                "en"
+              ],
+              "grievanceSlaPolicy": "ion://policy/grievance-sla.consumer.standard",
+              "paymentTermsPolicy": "ion://policy/payment-terms.upfront.full"
+            }
+          },
+          "commitmentAttributes": {
+            "@context": "https://schema.ion.id/extensions/trade/commitment/v1/context.jsonld",
+            "@type": "ion:IONTradeCommitment",
+            "lineId": "L01",
+            "resourceId": "res-auc-r-001",
+            "offerId": "OFFER-AUC-R-001",
+            "quantity": {
+              "count": 1
+            }
+          }
+        }
+      ],
+      "performance": [
+        {
+          "id": "PERF-001",
+          "commitmentIds": [
+            "COMMIT-L01"
+          ],
+          "status": {
+            "code": "DRAFT"
+          },
+          "performanceAttributes": {
+            "@context": "https://schema.ion.id/extensions/trade/performance/v1/context.jsonld",
+            "@type": "ion:IONTradePerformance",
+            "performanceMode": "DELIVERY",
+            "supportedPerformanceModes": [
+              "DELIVERY"
+            ],
+            "sla": {
+              "min": "PT30M",
+              "max": "PT2H",
+              "unitBasis": "ORDER_CONFIRMATION"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "context": {
+    "networkId": "beckn.one/testnet",
+    "action": "on_select",
+    "version": "2.0.0",
+    "bapId": "bap.example.com",
+    "bapUri": "http://onix-bap:8081/bap/receiver",
+    "bppId": "bpp.example.com",
+    "bppUri": "http://onix-bpp:8082/bpp/receiver",
+    "transactionId": "966b8e9e-a9e7-4d13-a521-7db16d80a10e",
+    "messageId": "bb748809-592a-4b5d-a34d-d1a0573f0cee",
+    "timestamp": "2026-04-08T17:50:00+05:30",
+    "ttl": "PT30S"
+  },
+  "message": {
+    "contract": {
+      "id": "draft-contract-0001",
+      "participants": [
+        {
+          "id": "participant-buyer-001",
+          "descriptor": {
+            "name": "John Doe",
+            "code": "buyer"
+          }
+        }
+      ],
+      "commitments": [
+        {
+          "id": "commitment-001",
+          "descriptor": {
+            "name": "Basic Service Package",
+            "code": "BSP-001"
+          },
+          "status": {
+            "code": "DRAFT"
+          },
+          "resources": [
+            {
+              "id": "resource-001",
+              "descriptor": {
+                "name": "Basic Service Package",
+                "code": "BSP-001"
+              },
+              "quantity": {
+                "unitQuantity": 2,
+                "unitCode": "UNIT"
+              }
+            }
+          ],
+          "offer": {
+            "id": "offer-001",
+            "resourceIds": [
+              "resource-001"
+            ]
+          }
+        }
+      ],
+      "consideration": [
+        {
+          "id": "consideration-001",
+          "price": {
+            "currency": "INR",
+            "value": "2000.00"
+          },
+          "status": {
+            "code": "DRAFT"
+          },
+          "breakup": [
+            {
+              "title": "Base Price",
+              "price": {
+                "currency": "INR",
+                "value": "1800.00"
+              }
+            },
+            {
+              "title": "Taxes",
+              "price": {
+                "currency": "INR",
+                "value": "200.00"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "context": {
+    "version": "2.0.0",
+    "action": "on_rating",
+    "domain": "beckn.one:commerce:aviation:1.0",
+    "timestamp": "2025-12-15T20:00:02-05:00",
+    "message_id": "msg-on-rating-flight-001",
+    "transaction_id": "txn-flight-sfo-jfk-001",
+    "bap_id": "travel-booking-app.example.com",
+    "bap_uri": "https://travel-booking-app.example.com",
+    "bpp_id": "delta-airlines-platform.com",
+    "bpp_uri": "https://delta-airlines-platform.com",
+    "ttl": "PT30S"
+  },
+  "message": {
+    "received": true,
+    "aggregate": {
+      "count": 1247,
+      "value": 4.73,
+      "best": 5,
+      "worst": 1
+    },
+    "feedbackForm": {
+      "id": "detailed-flight-feedback-001",
+      "name": "Detailed Flight Experience Feedback",
+      "url": "https://feedback.delta.com/detailed/flight-dl145-20251215",
+      "mime_type": "text/html"
+    }
+  }
+}

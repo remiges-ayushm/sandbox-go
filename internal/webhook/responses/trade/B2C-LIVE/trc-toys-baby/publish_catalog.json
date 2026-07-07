@@ -1,0 +1,89 @@
+{
+  "_meta": {
+    "description": "B2C-LIVE - catalog/publish. BPP mempublikasikan katalog Toys & Baby Products ke ION network registry.",
+    "pattern": "B2C-LIVE",
+    "step": "catalog/publish",
+    "sent_by": "BPP",
+    "received_by": "ION Network Registry",
+    "schemaPacks": [
+      "trade/resource/v1",
+      "trade/offer/v1",
+      "trade/provider/v1"
+    ]
+  },
+  "context": {
+    "domain": "ion:trade",
+    "action": "catalog/publish",
+    "version": "2.0.0",
+    "bppId": "merchant-sandbox.ion.id",
+    "bppUri": "https://merchant-sandbox.ion.id/bpp",
+    "networkId": "ion.id",
+    "transactionId": "33333333-3333-4333-8333-333333333333",
+    "messageId": "aabbccdd-trc--4433-8822-112233445566",
+    "timestamp": "2026-06-01T07:00:00.000+07:00",
+    "ttl": "PT24H",
+    "location": {
+      "country": {
+        "code": "IDN"
+      }
+    }
+  },
+  "message": {
+    "catalogs": [
+      {
+        "id": "cat-toys-b2c-001",
+        "descriptor": {
+          "name": "Toys & Baby Products - B2C-LIVE Catalog",
+          "shortDesc": "Katalog Toys & Baby Products untuk pola B2C-LIVE"
+        },
+        "provider": {
+          "id": "PROV-TOYS-JKT-001",
+          "descriptor": {
+            "name": "BabyLand & Mainan Edukatif",
+            "shortDesc": "Toko perlengkapan bayi dan mainan edukatif terpercaya, produk SNI dan ramah anak."
+          }
+        },
+        "resources": [
+          {
+            "id": "res-toys-001",
+            "descriptor": {
+              "name": "LEGO City Police Station 60316 - 668 Pcs Usia 6+",
+              "shortDesc": "Set bangunan LEGO City kantor polisi, 668 keping, 5 minifigur, usia 6+",
+              "longDesc": "LEGO City Police Station 60316 hadir dengan 668 keping dan 5 minifigur: polisi, narapidana, dan warga. Termasuk mobil polisi, motor, dan helikopter mini. Bangunan 3 lantai dengan penjara, garasi, dan ruang bukti. Dimensi selesai: 32x19x24cm. Kompatibel dengan semua set LEGO City. Usia 6+. Bersertifikat keamanan SNI."
+            },
+            "resourceAttributes": {
+              "@context": "https://schema.ion.id/extensions/trade/resource/v1/context.jsonld",
+              "@type": "ion:IONTradeResource",
+              "quantity": {
+                "value": 1,
+                "unit": "piece"
+              },
+              "resourceStructure": "PLAIN",
+              "resourceTangibility": "PHYSICAL",
+              "logisticsServiceType": "HYPERLOCAL",
+              "ageRestricted": false,
+              "countryOfOrigin": "DNK",
+              "images": [
+                "https://cdn.example.ion.id/products/lego-cty-60316-front.jpg"
+              ],
+              "availability": {
+                "status": "IN_STOCK",
+                "maxOrderQty": 10,
+                "backorderAllowed": false,
+                "substitutionAllowed": false
+              },
+              "identity": {
+                "brand": "LEGO",
+                "sku": "LEGO-CTY-60316"
+              },
+              "price": {
+                "currency": "IDR",
+                "value": "999000"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

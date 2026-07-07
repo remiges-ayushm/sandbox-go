@@ -1,0 +1,24 @@
+{
+  "context": {
+    "version": "2.0.0",
+    "action": "on_support",
+    "domain": "beckn.one:deg:p2p-enrollment:2.0.0",
+    "timestamp": "2024-11-01T12:00:05Z",
+    "message_id": "msg-on-support-enrollment-001",
+    "transaction_id": "txn-support-enrollment-001",
+    "bap_id": "utility-portal.example.com",
+    "bap_uri": "https://utility-portal.example.com/beckn",
+    "bpp_id": "vpp-program-owner.example.com",
+    "bpp_uri": "https://vpp-program-owner.example.com/beckn",
+    "ttl": "PT30S"
+  },
+  "message": {
+    "support": {
+      "ref_id": "order-onboard-consumer-001",
+      "callback_phone": "+1-800-ENERGY-1",
+      "email": "support@vpp-program-owner.example.com",
+      "url": "https://vpp-program-owner.example.com/support"
+    }
+  }
+}
+

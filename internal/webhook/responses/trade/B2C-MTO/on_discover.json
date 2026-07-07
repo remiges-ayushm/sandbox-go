@@ -1,0 +1,40 @@
+{
+  "context": {
+    "version": "2.0.0",
+    "action": "on_discover",
+    "networkId": "beckn.one/testnet-retail",
+    "bapId": "bap1.apexsb.iontest.in",
+    "bapUri": "https://bap1.apexsb.iontest.in/bap/receiver",
+    "bppId": "bpp1.apexsb.iontest.in",
+    "bppUri": "https://bpp1.apexsb.iontest.in/bpp/receiver",
+    "transactionId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "messageId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "timestamp": "2026-05-15T10:30:00.000Z",
+    "ttl": "PT30S",
+    "location": {
+      "city": {
+        "code": "JKT"
+      },
+      "country": {
+        "code": "ID"
+      }
+    }
+  },
+  "message": {
+    "catalogs": [
+      {
+        "descriptor": {
+          "name": "B2C Make-to-Order Catalog"
+        },
+        "id": "catalog-b2c-make-to-order-ca-001",
+        "provider": {
+          "id": "prov-b2c-mto",
+          "descriptor": {
+            "name": "Seller (B2C-MTO)"
+          }
+        },
+        "resources": []
+      }
+    ]
+  }
+}

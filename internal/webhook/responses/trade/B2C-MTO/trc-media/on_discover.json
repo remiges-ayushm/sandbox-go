@@ -1,0 +1,119 @@
+{
+  "context": {
+    "version": "2.0.0",
+    "networkId": "beckn.one/testnet-retail",
+    "bapId": "bap1.apexsb.iontest.in",
+    "bapUri": "https://bap1.apexsb.iontest.in/bap/receiver",
+    "transactionId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "messageId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "timestamp": "2026-06-01T08:00:00.000Z",
+    "ttl": "PT30S",
+    "location": {
+      "city": {
+        "code": "JKT"
+      },
+      "country": {
+        "code": "ID"
+      }
+    },
+    "action": "on_discover",
+    "bppId": "bpp1.apexsb.iontest.in",
+    "bppUri": "https://bpp1.apexsb.iontest.in/bpp/receiver"
+  },
+  "message": {
+    "catalogs": [
+      {
+        "id": "cat-media-b2c-001",
+        "descriptor": {
+          "name": "Books & Media - B2C-MTO Catalog",
+          "shortDesc": "Katalog Books & Media untuk pola B2C-MTO di jaringan ION Trade"
+        },
+        "provider": {
+          "id": "PROV-MEDIA-JKT-001",
+          "descriptor": {
+            "name": "Gramedia Digital & Bookstore",
+            "shortDesc": "Toko buku dan media terbesar di Indonesia, tersedia buku impor, lokal, dan digital."
+          }
+        },
+        "resources": [
+          {
+            "id": "res-media-001",
+            "descriptor": {
+              "name": "Atomic Habits - James Clear (Edisi Bahasa Indonesia)",
+              "shortDesc": "Buku pengembangan diri Atomic Habits, terjemahan resmi, softcover, 360 hal",
+              "longDesc": "Atomic Habits karya James Clear, diterbitkan dalam edisi Bahasa Indonesia oleh PT Gramedia Pustaka Utama. 360 halaman, softcover. Framework terbukti untuk membangun kebiasaan baik dan menghilangkan kebiasaan buruk melalui perubahan 1% setiap hari. Sudah terjual 15 juta eksemplar di seluruh dunia. ISBN: 9786020638201."
+            },
+            "resourceAttributes": {
+              "@context": "https://schema.ion.id/extensions/trade/resource/v1/context.jsonld",
+              "@type": "ion:IONTradeResource",
+              "quantity": {
+                "value": 1,
+                "unit": "piece"
+              },
+              "resourceStructure": "PLAIN",
+              "resourceTangibility": "PHYSICAL",
+              "logisticsServiceType": "HYPERLOCAL",
+              "ageRestricted": false,
+              "countryOfOrigin": "IDN",
+              "images": [
+                "https://cdn.example.ion.id/products/gram-atomhab-ind-sc-front.jpg"
+              ],
+              "availability": {
+                "status": "IN_STOCK",
+                "maxOrderQty": 50,
+                "backorderAllowed": false,
+                "substitutionAllowed": false
+              },
+              "identity": {
+                "brand": "Gramedia Pustaka",
+                "sku": "GRAM-ATOMHAB-IND-SC"
+              },
+              "price": {
+                "currency": "IDR",
+                "value": "119000"
+              }
+            }
+          },
+          {
+            "id": "res-media-002",
+            "descriptor": {
+              "name": "Komik One Piece Vol. 108 - Eiichiro Oda",
+              "shortDesc": "Manga One Piece volume 108, edisi Bahasa Indonesia, Shueisha/Elex Media",
+              "longDesc": "One Piece volume 108 karya Eiichiro Oda, diterbitkan oleh Elex Media Komputindo atas lisensi resmi Shueisha Jepang. Format B6 (12.8x18.2cm), 192 halaman, hitam-putih. Menceritakan arc Egghead Island. Edisi Bahasa Indonesia. ISBN: 9786230025020."
+            },
+            "resourceAttributes": {
+              "@context": "https://schema.ion.id/extensions/trade/resource/v1/context.jsonld",
+              "@type": "ion:IONTradeResource",
+              "quantity": {
+                "value": 1,
+                "unit": "piece"
+              },
+              "resourceStructure": "PLAIN",
+              "resourceTangibility": "PHYSICAL",
+              "logisticsServiceType": "HYPERLOCAL",
+              "ageRestricted": false,
+              "countryOfOrigin": "IDN",
+              "images": [
+                "https://cdn.example.ion.id/products/elex-onepiece-108-front.jpg"
+              ],
+              "availability": {
+                "status": "IN_STOCK",
+                "maxOrderQty": 75,
+                "backorderAllowed": false,
+                "substitutionAllowed": false
+              },
+              "identity": {
+                "brand": "Elex Media",
+                "sku": "ELEX-ONEPIECE-108"
+              },
+              "price": {
+                "currency": "IDR",
+                "value": "30000"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

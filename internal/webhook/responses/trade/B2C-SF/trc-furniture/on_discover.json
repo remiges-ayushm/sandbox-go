@@ -1,0 +1,119 @@
+{
+  "context": {
+    "version": "2.0.0",
+    "networkId": "beckn.one/testnet-retail",
+    "bapId": "bap1.apexsb.iontest.in",
+    "bapUri": "https://bap1.apexsb.iontest.in/bap/receiver",
+    "transactionId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "messageId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "timestamp": "2026-06-01T08:00:00.000Z",
+    "ttl": "PT30S",
+    "location": {
+      "city": {
+        "code": "JKT"
+      },
+      "country": {
+        "code": "ID"
+      }
+    },
+    "action": "on_discover",
+    "bppId": "bpp1.apexsb.iontest.in",
+    "bppUri": "https://bpp1.apexsb.iontest.in/bpp/receiver"
+  },
+  "message": {
+    "catalogs": [
+      {
+        "id": "cat-furniture-b2c-001",
+        "descriptor": {
+          "name": "Furniture & Living - B2C-SF Catalog",
+          "shortDesc": "Katalog Furniture & Living untuk pola B2C-SF di jaringan ION Trade"
+        },
+        "provider": {
+          "id": "PROV-FURN-JKT-001",
+          "descriptor": {
+            "name": "Jepara Furniture Official Store",
+            "shortDesc": "Furnitur kayu jati dan mahoni ukiran Jepara langsung dari pengrajin ke konsumen."
+          }
+        },
+        "resources": [
+          {
+            "id": "res-furn-001",
+            "descriptor": {
+              "name": "Meja Makan Kayu Jati Minimalis 4 Kursi - Natural 120x70cm",
+              "shortDesc": "Set meja makan 4 kursi kayu jati solid, finishing natural, 120x70x75cm",
+              "longDesc": "Set meja makan minimalis terbuat dari kayu jati solid grade A dari Jepara. Dimensi meja: 120x70x75cm. Termasuk 4 kursi jati dengan bantalan busa tebal bersarung kain abu-abu. Finishing natural dengan pernis water-based ramah lingkungan. Rakitan mudah dengan instruksi terlampir. Garansi 3 tahun untuk rangka."
+            },
+            "resourceAttributes": {
+              "@context": "https://schema.ion.id/extensions/trade/resource/v1/context.jsonld",
+              "@type": "ion:IONTradeResource",
+              "quantity": {
+                "value": 1,
+                "unit": "set"
+              },
+              "resourceStructure": "PLAIN",
+              "resourceTangibility": "PHYSICAL",
+              "logisticsServiceType": "DOMESTIC_SURFACE",
+              "ageRestricted": false,
+              "countryOfOrigin": "IDN",
+              "images": [
+                "https://cdn.example.ion.id/products/jcr-mejamkn-jati-4-nat-front.jpg"
+              ],
+              "availability": {
+                "status": "IN_STOCK",
+                "maxOrderQty": 8,
+                "backorderAllowed": false,
+                "substitutionAllowed": false
+              },
+              "identity": {
+                "brand": "Jepara Craft",
+                "sku": "JCR-MEJAMKN-JATI-4-NAT"
+              },
+              "price": {
+                "currency": "IDR",
+                "value": "3850000"
+              }
+            }
+          },
+          {
+            "id": "res-furn-002",
+            "descriptor": {
+              "name": "Rak Buku Kayu Mahoni 5 Tingkat - Cokelat Walnut 80x30x180cm",
+              "shortDesc": "Rak buku 5 rak kayu mahoni solid, finishing walnut, kapasitas 50kg, 80x30x180cm",
+              "longDesc": "Rak buku 5 tingkat berbahan kayu mahoni solid dengan finishing cat walnut tahan gores. Dimensi 80x30x180cm. Setiap rak mampu menahan beban hingga 10kg (total 50kg). Dilengkapi bracket dinding untuk keamanan anti-topple. Cocok untuk ruang kerja, ruang keluarga, atau kamar tidur bergaya modern."
+            },
+            "resourceAttributes": {
+              "@context": "https://schema.ion.id/extensions/trade/resource/v1/context.jsonld",
+              "@type": "ion:IONTradeResource",
+              "quantity": {
+                "value": 1,
+                "unit": "piece"
+              },
+              "resourceStructure": "PLAIN",
+              "resourceTangibility": "PHYSICAL",
+              "logisticsServiceType": "DOMESTIC_SURFACE",
+              "ageRestricted": false,
+              "countryOfOrigin": "IDN",
+              "images": [
+                "https://cdn.example.ion.id/products/jcr-rakbuku-mhoni-5t-wlt-front.jpg"
+              ],
+              "availability": {
+                "status": "IN_STOCK",
+                "maxOrderQty": 12,
+                "backorderAllowed": false,
+                "substitutionAllowed": false
+              },
+              "identity": {
+                "brand": "Jepara Craft",
+                "sku": "JCR-RAKBUKU-MHONI-5T-WLT"
+              },
+              "price": {
+                "currency": "IDR",
+                "value": "1250000"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

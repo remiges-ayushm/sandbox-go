@@ -1,0 +1,335 @@
+{
+  "_meta": {
+    "description": "B2C Storefront — on_status OUT_FOR_DELIVERY. Package is on courier vehicle and will arrive today. State: DISPATCHED → OUT_FOR_DELIVERY. OTP 738291 carried — consumer should be ready to give it to courier. Estimated window 15:00–16:00.",
+    "pattern": "B2C-SF",
+    "step": "on_status",
+    "statusCode": "OUT_FOR_DELIVERY",
+    "stateMachineTransition": "DISPATCHED → OUT_FOR_DELIVERY",
+    "sent_by": "BPP",
+    "received_by": "BAP"
+  },
+  "context": {
+    "domain": "ion:trade",
+    "action": "on_status",
+    "version": "2.0.0",
+    "bapId": "tokobeli-consumer.ion.id",
+    "bapUri": "https://api.tokobeli.co.id/beckn",
+    "bppId": "istore-indonesia.ion.id",
+    "bppUri": "https://api.istore-indonesia.co.id/beckn",
+    "networkId": "ion.id",
+    "transactionId": "33333333-3333-4333-8333-333333333333",
+    "messageId": "0da81043-edc1-4f2a-b441-26533091e59e",
+    "timestamp": "2026-05-19T14:45:00.000+07:00",
+    "ttl": "PT30S",
+    "location": {
+      "city": {
+        "code": "std:3171"
+      },
+      "country": {
+        "code": "IDN"
+      }
+    }
+  },
+  "message": {
+    "contract": {
+      "id": "44444444-4444-4444-8444-444444444442",
+      "status": {
+        "code": "ACTIVE",
+        "name": "Active"
+      },
+      "performance": [
+        {
+          "id": "PERF-001",
+          "commitmentIds": [
+            "L01"
+          ],
+          "status": {
+            "code": "OUT_FOR_DELIVERY",
+            "name": "OUT FOR DELIVERY"
+          },
+          "performanceAttributes": {
+            "@context": "https://schema.ion.id/extensions/trade/performance/v1/context.jsonld",
+            "@type": "ion:IONTradePerformance",
+            "performanceMode": "DELIVERY",
+            "proofOfDeliveryType": "OTP",
+            "deliveryOtp": "738291",
+            "stops": [
+              {
+                "type": "START",
+                "location": {
+                  "gps": "-6.2088,106.8213"
+                }
+              },
+              {
+                "type": "END",
+                "location": {
+                  "address": "Unit 12B, Apartemen Senopati Suites, Jl. Senopati No.60, Jakarta Selatan",
+                  "gps": "-6.2245,106.8069",
+                  "areaCode": "12190"
+                }
+              }
+            ],
+            "awbNumber": "GOSEND-SD-20260519-889234",
+            "trackingUrl": "https://gosend.id/track/GOSEND-SD-20260519-889234",
+            "agentName": "Rudi Hartono",
+            "agentPhone": "08567891234",
+            "estimatedDeliveryTime": "2026-05-19T15:30:00.000+07:00",
+            "promisedWindow": {
+              "startAt": "2026-05-19T15:00:00.000+07:00",
+              "endAt": "2026-05-19T16:00:00.000+07:00"
+            },
+            "supportedPerformanceModes": [
+              "DELIVERY"
+            ],
+            "sla": {
+              "unitBasis": "ORDER_CONFIRMATION"
+            }
+          }
+        }
+      ],
+      "commitments": [
+        {
+          "id": "L01",
+          "status": {
+            "descriptor": {
+              "code": "ACTIVE"
+            }
+          },
+          "resources": [
+            {
+              "id": "IPHONE17-BASE",
+              "quantity": {
+                "count": 1
+              },
+              "resourceAttributes": {
+                "@context": "https://schema.ion.id/extensions/trade/resource/v1/context.jsonld",
+                "@type": "ion:IONTradeResource",
+                "quantity": {
+                  "value": 1,
+                  "unit": "piece"
+                },
+                "resourceStructure": "VARIANT",
+                "resourceTangibility": "PHYSICAL",
+                "logisticsServiceType": "DOMESTIC_SURFACE",
+                "ageRestricted": false,
+                "countryOfOrigin": "CHN",
+                "canonicalId": "ION-CAN-IPHONE17-2026",
+                "images": [
+                  "https://cdn.istore-indonesia.co.id/iphone17/primary.jpg",
+                  "https://cdn.istore-indonesia.co.id/iphone17/gallery-1.jpg"
+                ],
+                "imageSet": [
+                  {
+                    "url": "https://cdn.istore-indonesia.co.id/iphone17/primary.jpg",
+                    "role": "PRIMARY",
+                    "sequence": 1
+                  },
+                  {
+                    "url": "https://cdn.istore-indonesia.co.id/iphone17/gallery-1.jpg",
+                    "role": "GALLERY",
+                    "sequence": 2
+                  },
+                  {
+                    "url": "https://cdn.istore-indonesia.co.id/iphone17/spec-sheet.jpg",
+                    "role": "SPEC_SHEET",
+                    "sequence": 3
+                  },
+                  {
+                    "url": "https://cdn.istore-indonesia.co.id/iphone17/unboxing.jpg",
+                    "role": "UNBOXING",
+                    "sequence": 4
+                  }
+                ],
+                "identity": {
+                  "brand": "Apple",
+                  "model": "iPhone 17",
+                  "modelYear": 2026,
+                  "sku": "APPLE-IP17-BASE"
+                },
+                "productCode": {
+                  "type": "GTIN",
+                  "value": "0194253882701"
+                },
+                "availability": {
+                  "status": "IN_STOCK",
+                  "maxOrderQty": 2,
+                  "backorderAllowed": false
+                },
+                "physical": {
+                  "dimensions": {
+                    "lengthCm": 14.76,
+                    "widthCm": 7.15,
+                    "heightCm": 0.78
+                  },
+                  "weightKg": 0.17
+                },
+                "packaged": {
+                  "netQuantity": {
+                    "value": 1,
+                    "unit": "PIECE"
+                  },
+                  "manufacturerOrPacker": {
+                    "type": "MANUFACTURER",
+                    "name": "Apple Inc.",
+                    "address": "One Apple Park Way, Cupertino, California 95014, USA"
+                  },
+                  "monthYearOfManufacture": "03/2026",
+                  "commonOrGenericName": "Smartphone"
+                },
+                "regulatory": {
+                  "registrations": [
+                    {
+                      "scheme": "SNI",
+                      "id": "SNI-2026-EL-009871",
+                      "role": "BRAND_OWNER",
+                      "validUntil": "2027-12-31"
+                    },
+                    {
+                      "scheme": "KEMENKES",
+                      "id": "POSTEL-2026-SHF-00412",
+                      "role": "IMPORTER",
+                      "validUntil": "2027-06-30"
+                    }
+                  ]
+                },
+                "electronics": {
+                  "osType": "IOS",
+                  "connectivity": [
+                    "WIFI",
+                    "BLUETOOTH",
+                    "NFC",
+                    "USB_C",
+                    "SUB6_5G"
+                  ],
+                  "voltage": "220V",
+                  "energyRating": 5
+                },
+                "warranty": {
+                  "duration": "P1Y",
+                  "type": "MANUFACTURER",
+                  "terms": "Garansi resmi Apple Indonesia 1 tahun untuk kerusakan komponen dan manufacturing defect. Tidak mencakup kerusakan fisik, air, dan modifikasi tidak resmi.",
+                  "serviceCenter": "Apple Authorised Service Provider — 0800-100-9701"
+                },
+                "itemRating": 4.9,
+                "variantMatrix": {
+                  "axes": [
+                    {
+                      "id": "colour",
+                      "label": {
+                        "id": "Warna",
+                        "en": "Colour"
+                      },
+                      "values": [
+                        {
+                          "id": "black-titanium",
+                          "label": {
+                            "id": "Black Titanium",
+                            "en": "Black Titanium"
+                          },
+                          "priceDelta": 0,
+                          "available": true
+                        },
+                        {
+                          "id": "white-titanium",
+                          "label": {
+                            "id": "White Titanium",
+                            "en": "White Titanium"
+                          },
+                          "priceDelta": 0,
+                          "available": true
+                        },
+                        {
+                          "id": "natural-titanium",
+                          "label": {
+                            "id": "Natural Titanium",
+                            "en": "Natural Titanium"
+                          },
+                          "priceDelta": 0,
+                          "available": true
+                        },
+                        {
+                          "id": "desert-titanium",
+                          "label": {
+                            "id": "Desert Titanium",
+                            "en": "Desert Titanium"
+                          },
+                          "priceDelta": 0,
+                          "available": true
+                        }
+                      ]
+                    },
+                    {
+                      "id": "storage",
+                      "label": {
+                        "id": "Kapasitas Penyimpanan",
+                        "en": "Storage"
+                      },
+                      "values": [
+                        {
+                          "id": "128gb",
+                          "label": {
+                            "id": "128 GB",
+                            "en": "128 GB"
+                          },
+                          "priceDelta": 0,
+                          "available": true
+                        },
+                        {
+                          "id": "256gb",
+                          "label": {
+                            "id": "256 GB",
+                            "en": "256 GB"
+                          },
+                          "priceDelta": 1500000,
+                          "available": true
+                        },
+                        {
+                          "id": "512gb",
+                          "label": {
+                            "id": "512 GB",
+                            "en": "512 GB"
+                          },
+                          "priceDelta": 3500000,
+                          "available": true
+                        }
+                      ]
+                    }
+                  ],
+                  "combinationRules": {
+                    "generateAllCombinations": true,
+                    "priceCalculationMode": "SUM_AXIS_DELTAS"
+                  }
+                },
+                "parentResourceId": "IPHONE17-BASE",
+                "variantGroup": {
+                  "id": "IPHONE17",
+                  "name": {
+                    "id": "iPhone 17 Variant Family",
+                    "en": "iPhone 17 Variant Family"
+                  },
+                  "variantOn": "storage"
+                },
+                "isDefaultVariant": false
+              },
+              "descriptor": {
+                "longDesc": "CPU: Apple A19 Bionic. GPU: Apple GPU 6-core. RAM: 8 GB. Storage: 128 GB. Screen: 6.1\". Main camera: 48MP. Front camera: 12MP. Battery: 3561mAh. OS: iOS 19."
+              }
+            }
+          ],
+          "offer": {
+            "id": "OFFER-IPHONE17-B2C-001",
+            "resourceIds": [
+              "IPHONE17-BASE"
+            ],
+            "provider": {
+              "id": "PROV-ISTORE-JKT-001",
+              "descriptor": {
+                "name": "iStore Indonesia � Official Apple Reseller"
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

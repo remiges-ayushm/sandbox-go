@@ -1,0 +1,119 @@
+{
+  "context": {
+    "version": "2.0.0",
+    "networkId": "beckn.one/testnet-retail",
+    "bapId": "bap1.apexsb.iontest.in",
+    "bapUri": "https://bap1.apexsb.iontest.in/bap/receiver",
+    "transactionId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "messageId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "timestamp": "2026-06-01T08:00:00.000Z",
+    "ttl": "PT30S",
+    "location": {
+      "city": {
+        "code": "JKT"
+      },
+      "country": {
+        "code": "ID"
+      }
+    },
+    "action": "on_discover",
+    "bppId": "bpp1.apexsb.iontest.in",
+    "bppUri": "https://bpp1.apexsb.iontest.in/bpp/receiver"
+  },
+  "message": {
+    "catalogs": [
+      {
+        "id": "cat-luggage-b2c-001",
+        "descriptor": {
+          "name": "Luggage & Travel Accessories - B2C-MTO Catalog",
+          "shortDesc": "Katalog Luggage & Travel Accessories untuk pola B2C-MTO di jaringan ION Trade"
+        },
+        "provider": {
+          "id": "PROV-LUGG-JKT-001",
+          "descriptor": {
+            "name": "TravelGear Indonesia Official",
+            "shortDesc": "Toko koper, tas perjalanan, dan aksesoris travel terlengkap di Indonesia."
+          }
+        },
+        "resources": [
+          {
+            "id": "res-lugg-001",
+            "descriptor": {
+              "name": "Samsonite Omni PC Spinner 68cm Check-in - Midnight Blue",
+              "shortDesc": "Koper hardshell 4-roda 68cm, kunci TSA, bahan polycarbonate, expandable, Midnight Blue",
+              "longDesc": "Samsonite Omni PC Spinner 68cm adalah koper hardshell check-in berbahan polycarbonate ringan namun kuat. Empat roda 360 derajat ganda untuk mobilitas maksimal. Kunci TSA terintegrasi. Dapat diperluas 1 inci. Interior dual-tone dengan penyekat tali dan kantong ritsleting. Garansi global 10 tahun. Warna: Midnight Blue."
+            },
+            "resourceAttributes": {
+              "@context": "https://schema.ion.id/extensions/trade/resource/v1/context.jsonld",
+              "@type": "ion:IONTradeResource",
+              "quantity": {
+                "value": 1,
+                "unit": "piece"
+              },
+              "resourceStructure": "PLAIN",
+              "resourceTangibility": "PHYSICAL",
+              "logisticsServiceType": "HYPERLOCAL",
+              "ageRestricted": false,
+              "countryOfOrigin": "LUX",
+              "images": [
+                "https://cdn.example.ion.id/products/sam-omnipc-68-mdnblu-front.jpg"
+              ],
+              "availability": {
+                "status": "IN_STOCK",
+                "maxOrderQty": 12,
+                "backorderAllowed": false,
+                "substitutionAllowed": false
+              },
+              "identity": {
+                "brand": "Samsonite",
+                "sku": "SAM-OMNIPC-68-MDNBLU"
+              },
+              "price": {
+                "currency": "IDR",
+                "value": "2850000"
+              }
+            }
+          },
+          {
+            "id": "res-lugg-002",
+            "descriptor": {
+              "name": "Eiger Stone 45L Backpack - Khaki",
+              "shortDesc": "Ransel hiking 45L bahan Cordura 600D, frame aluminium, rain cover, Khaki",
+              "longDesc": "Eiger Stone 45L adalah ransel hiking pria-wanita berkapasitas 45 liter dari bahan Cordura 600D tahan air dan robek. Fitur: rangka aluminium S-curve yang dapat dilepas, tali punggung ventilasi mesh, hip belt empuk, akses bawah terpisan, dan rain cover built-in. Warna: Khaki. Ukuran: 35x25x55cm. Berat: 1.8kg."
+            },
+            "resourceAttributes": {
+              "@context": "https://schema.ion.id/extensions/trade/resource/v1/context.jsonld",
+              "@type": "ion:IONTradeResource",
+              "quantity": {
+                "value": 1,
+                "unit": "piece"
+              },
+              "resourceStructure": "PLAIN",
+              "resourceTangibility": "PHYSICAL",
+              "logisticsServiceType": "HYPERLOCAL",
+              "ageRestricted": false,
+              "countryOfOrigin": "IDN",
+              "images": [
+                "https://cdn.example.ion.id/products/eiger-stone-45l-khk-front.jpg"
+              ],
+              "availability": {
+                "status": "IN_STOCK",
+                "maxOrderQty": 18,
+                "backorderAllowed": false,
+                "substitutionAllowed": false
+              },
+              "identity": {
+                "brand": "Eiger",
+                "sku": "EIGER-STONE-45L-KHK"
+              },
+              "price": {
+                "currency": "IDR",
+                "value": "895000"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

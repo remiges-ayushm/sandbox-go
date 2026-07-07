@@ -1,0 +1,22 @@
+{
+  "context": {
+    "version": "2.0.0",
+    "action": "on_track",
+    "domain": "beckn.one:mobility:ride-hailing:1.0",
+    "timestamp": "2025-12-10T10:10:02+07:00",
+    "message_id": "msg-on-track-cab-001",
+    "transaction_id": "txn-cab-bangkok-001",
+    "bap_id": "travel-booking-app.example.com",
+    "bap_uri": "https://travel-booking-app.example.com",
+    "bpp_id": "bangkok-cab-service.com",
+    "bpp_uri": "https://bangkok-cab-service.com",
+    "ttl": "PT30S"
+  },
+  "message": {
+    "tracking": {
+      "url": "https://track.bangkokcabs.com/ride/order-cab-bangkok-001",
+      "status": "active",
+      "tl_method": "http/get"
+    }
+  }
+}

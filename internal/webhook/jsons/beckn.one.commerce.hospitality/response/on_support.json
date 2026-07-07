@@ -1,0 +1,22 @@
+{
+  "context": {
+    "version": "2.0.0",
+    "action": "on_support",
+    "domain": "beckn.one:commerce:hospitality:1.0",
+    "timestamp": "2025-12-11T12:00:02+07:00",
+    "message_id": "msg-on-support-hotel-001",
+    "transaction_id": "txn-hotel-bangkok-001",
+    "bap_id": "travel-booking-app.example.com",
+    "bap_uri": "https://travel-booking-app.example.com",
+    "bpp_id": "hotel-aggregator-platform.com",
+    "bpp_uri": "https://hotel-aggregator-platform.com",
+    "ttl": "PT30S"
+  },
+  "message": {
+    "support": {
+      "phone": "+66 2 123 4567",
+      "email": "support@grandsiamhotel.com",
+      "url": "https://grandsiamhotel.com/support"
+    }
+  }
+}

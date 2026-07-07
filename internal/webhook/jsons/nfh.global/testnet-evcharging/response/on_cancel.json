@@ -1,0 +1,141 @@
+{
+  "context": {
+    "version": "2.0.0",
+    "action": "on_cancel",
+    "networkId": "nfh.global/testnet-evcharging",
+    "bapId": "example-bap.com",
+    "bapUri": "https://example-bap.com/pilot/bap/energy/v2",
+    "transactionId": "2b4d69aa-22e4-4c78-9f56-5a7b9e2b2002",
+    "messageId": "4a736341-8897-4e5a-9873-53533691f42d",
+    "timestamp": "2025-01-27T10:05:00Z",
+    "ttl": "PT30S",
+    "bppId": "example-bpp.com",
+    "bppUri": "https://example-bpp.com/pilot/bpp/energy/v2"
+  },
+  "message": {
+    "contract": {
+      "id": "contract-ev-charging-001",
+      "status": {
+        "code": "CANCELLED"
+      },
+      "participants": [
+        {
+          "id": "cpo1.com",
+          "descriptor": {
+            "name": "EcoPower Charging Pvt Ltd"
+          },
+          "participantAttributes": {
+            "@context": "https://schema.beckn.io/Provider/v2.1/context.jsonld",
+            "@type": "Provider",
+            "id": "cpo1.com",
+            "descriptor": {
+              "name": "EcoPower Charging Pvt Ltd"
+            }
+          }
+        },
+        {
+          "id": "user-123",
+          "descriptor": {
+            "name": "Ravi Kumar"
+          },
+          "participantAttributes": {
+            "@context": "https://schema.beckn.io/Consumer/v2.0/context.jsonld",
+            "@type": "Consumer",
+            "role": "buyer",
+            "person": {
+              "id": "user-123",
+              "name": "Ravi Kumar",
+              "telephone": "+91-9876543210",
+              "email": "ravi.kumar@example.com"
+            }
+          }
+        }
+      ],
+      "commitments": [
+        {
+          "id": "commitment-001",
+          "status": {
+            "descriptor": {
+              "code": "CLOSED"
+            }
+          },
+          "resources": [
+            {
+              "id": "IND*ecopower-charging*cs-01*IN*ECO*BTM*01*CCS2*A*CCS2-A",
+              "quantity": {
+                "unitCode": "KWH",
+                "unitQuantity": 2.5
+              }
+            }
+          ],
+          "offer": {
+            "id": "offer-ccs2-60kw-kwh",
+            "@context": "https://schema.beckn.io/Offer/v2.0/context.jsonld"
+          }
+        }
+      ],
+      "consideration": [
+        {
+          "id": "consideration-001",
+          "status": {
+            "code": "QUOTED"
+          },
+          "considerationAttributes": {
+            "@context": "https://schema.beckn.io/PriceSpecification/v2.1/context.jsonld",
+            "@type": "PriceSpecification",
+            "currency": "INR",
+            "totalAmount": 143.95,
+            "breakup": [
+              {
+                "title": "Base charging session cost",
+                "amount": 112.5,
+                "type": "BASE_PRICE"
+              },
+              {
+                "title": "Surge price",
+                "amount": 20.0,
+                "type": "SURCHARGE"
+              },
+              {
+                "title": "Offer discount",
+                "amount": -15.0,
+                "type": "DISCOUNT"
+              },
+              {
+                "title": "Service fee",
+                "amount": 10.0,
+                "type": "FEE"
+              },
+              {
+                "title": "Overcharge estimation",
+                "amount": 13.64,
+                "type": "FEE"
+              },
+              {
+                "title": "Buyer finder fee",
+                "amount": 2.81,
+                "type": "FEE"
+              }
+            ],
+            "paymentMethods": [
+              "UPI",
+              "WALLET",
+              "BANK_TRANSFER"
+            ]
+          }
+        }
+      ],
+      "settlements": [
+        {
+          "id": "payment-987e6543-e21b-34c5-b567-537725285111",
+          "status": "COMPLETE",
+          "settlementAttributes": {
+            "@context": "https://raw.githubusercontent.com/bhim/ubc-tsd/main/beckn-schemas/UBCExtensions/v1/context.jsonld",
+            "@type": "UBCPaymentAttributes",
+            "upiTransactionId": "UPI123456789012"
+          }
+        }
+      ]
+    }
+  }
+}

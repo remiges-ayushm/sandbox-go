@@ -1,0 +1,23 @@
+{
+  "context": {
+    "version": "2.0.0",
+    "action": "on_track",
+    "domain": "beckn.one:deg:p2p-enrollment:2.0.0",
+    "timestamp": "2024-11-01T12:00:05Z",
+    "message_id": "msg-on-track-enrollment-001",
+    "transaction_id": "txn-track-enrollment-001",
+    "bap_id": "utility-portal.example.com",
+    "bap_uri": "https://utility-portal.example.com/beckn",
+    "bpp_id": "vpp-program-owner.example.com",
+    "bpp_uri": "https://vpp-program-owner.example.com/beckn",
+    "ttl": "PT30S"
+  },
+  "message": {
+    "tracking": {
+      "id": "tracking-enrollment-001",
+      "url": "https://vpp-program-owner.example.com/track/enrollment-consumer-001",
+      "status": "active"
+    }
+  }
+}
+

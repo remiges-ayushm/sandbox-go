@@ -1,0 +1,119 @@
+{
+  "context": {
+    "version": "2.0.0",
+    "networkId": "beckn.one/testnet-retail",
+    "bapId": "bap1.apexsb.iontest.in",
+    "bapUri": "https://bap1.apexsb.iontest.in/bap/receiver",
+    "transactionId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "messageId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "timestamp": "2026-06-01T08:00:00.000Z",
+    "ttl": "PT30S",
+    "location": {
+      "city": {
+        "code": "JKT"
+      },
+      "country": {
+        "code": "ID"
+      }
+    },
+    "action": "on_discover",
+    "bppId": "bpp1.apexsb.iontest.in",
+    "bppUri": "https://bpp1.apexsb.iontest.in/bpp/receiver"
+  },
+  "message": {
+    "catalogs": [
+      {
+        "id": "cat-elec-b2c-001",
+        "descriptor": {
+          "name": "Electronics & Gadgets - AUC-R Catalog",
+          "shortDesc": "Katalog Electronics & Gadgets untuk pola AUC-R di jaringan ION Trade"
+        },
+        "provider": {
+          "id": "PROV-ELEC-JKT-001",
+          "descriptor": {
+            "name": "iGadget Indonesia Official",
+            "shortDesc": "Distributor resmi produk elektronik konsumen Samsung, Xiaomi, dan Lenovo di Indonesia."
+          }
+        },
+        "resources": [
+          {
+            "id": "res-elec-001",
+            "descriptor": {
+              "name": "Samsung Galaxy A55 5G - 8GB/256GB Awesome Navy",
+              "shortDesc": "Smartphone 5G layar 6.6 inci Super AMOLED, kamera 50MP, RAM 8GB",
+              "longDesc": "Samsung Galaxy A55 5G hadir dengan layar 6.6 inci Super AMOLED 120Hz, chipset Exynos 1480 Octa-core, RAM 8GB, penyimpanan 256GB yang dapat diperluas. Kamera utama 50MP OIS + 12MP ultrawide + 5MP macro. Baterai 5000mAh, fast charging 25W. Android 14 dengan One UI 6.1."
+            },
+            "resourceAttributes": {
+              "@context": "https://schema.ion.id/extensions/trade/resource/v1/context.jsonld",
+              "@type": "ion:IONTradeResource",
+              "quantity": {
+                "value": 1,
+                "unit": "piece"
+              },
+              "resourceStructure": "PLAIN",
+              "resourceTangibility": "PHYSICAL",
+              "logisticsServiceType": "DOMESTIC_SURFACE",
+              "ageRestricted": false,
+              "countryOfOrigin": "KOR",
+              "images": [
+                "https://cdn.example.ion.id/products/sam-ga55-8-256-navy-front.jpg"
+              ],
+              "availability": {
+                "status": "IN_STOCK",
+                "maxOrderQty": 15,
+                "backorderAllowed": false,
+                "substitutionAllowed": false
+              },
+              "identity": {
+                "brand": "Samsung",
+                "sku": "SAM-GA55-8-256-NAVY"
+              },
+              "price": {
+                "currency": "IDR",
+                "value": "5999000"
+              }
+            }
+          },
+          {
+            "id": "res-elec-002",
+            "descriptor": {
+              "name": "Xiaomi Redmi Buds 5 Pro - True Wireless Earbuds ANC",
+              "shortDesc": "Earbuds TWS ANC 52dB, driver 11mm, baterai 38 jam, Bluetooth 5.4",
+              "longDesc": "Xiaomi Redmi Buds 5 Pro dilengkapi Active Noise Cancellation hingga 52dB, driver 11mm dual-magnet, latensi rendah 46ms mode game. Baterai earbuds 9 jam + case 29 jam = total 38 jam. Bluetooth 5.4, IP54. Tersedia dalam Midnight Black."
+            },
+            "resourceAttributes": {
+              "@context": "https://schema.ion.id/extensions/trade/resource/v1/context.jsonld",
+              "@type": "ion:IONTradeResource",
+              "quantity": {
+                "value": 1,
+                "unit": "piece"
+              },
+              "resourceStructure": "PLAIN",
+              "resourceTangibility": "PHYSICAL",
+              "logisticsServiceType": "DOMESTIC_SURFACE",
+              "ageRestricted": false,
+              "countryOfOrigin": "CHN",
+              "images": [
+                "https://cdn.example.ion.id/products/xiao-rbuds5p-blk-front.jpg"
+              ],
+              "availability": {
+                "status": "IN_STOCK",
+                "maxOrderQty": 40,
+                "backorderAllowed": false,
+                "substitutionAllowed": false
+              },
+              "identity": {
+                "brand": "Xiaomi",
+                "sku": "XIAO-RBUDS5P-BLK"
+              },
+              "price": {
+                "currency": "IDR",
+                "value": "599000"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

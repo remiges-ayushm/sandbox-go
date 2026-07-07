@@ -1,0 +1,21 @@
+version: "3.9"
+services:
+  sandbox:
+    container_name: sandbox-2.0-go
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfile
+    image: ayushmatha2001/test-repo:v1
+    environment:
+      - BPP_CALLBACK_ENDPOINT=http://host.docker.internal:3000/bpp/caller
+      - PORT=3002
+    ports:
+      - "3002:3002"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:3002/api/health"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+      start_period: 10s

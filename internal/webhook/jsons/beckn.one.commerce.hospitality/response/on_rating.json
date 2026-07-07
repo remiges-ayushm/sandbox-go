@@ -1,0 +1,30 @@
+{
+  "context": {
+    "version": "2.0.0",
+    "action": "on_rating",
+    "domain": "beckn.one:commerce:hospitality:1.0",
+    "timestamp": "2025-12-15T14:00:02+07:00",
+    "message_id": "msg-on-rating-hotel-001",
+    "transaction_id": "txn-hotel-bangkok-001",
+    "bap_id": "travel-booking-app.example.com",
+    "bap_uri": "https://travel-booking-app.example.com",
+    "bpp_id": "hotel-aggregator-platform.com",
+    "bpp_uri": "https://hotel-aggregator-platform.com",
+    "ttl": "PT30S"
+  },
+  "message": {
+    "received": true,
+    "aggregate": {
+      "count": 2848,
+      "value": 4.5,
+      "best": 5,
+      "worst": 1
+    },
+    "feedbackForm": {
+      "id": "detailed-hotel-feedback-001",
+      "name": "Detailed Hotel Stay Feedback",
+      "url": "https://feedback.grandsiamhotel.com/detailed/booking-hbnk1025",
+      "mime_type": "text/html"
+    }
+  }
+}

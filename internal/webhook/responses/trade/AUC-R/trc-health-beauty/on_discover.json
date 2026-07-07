@@ -1,0 +1,119 @@
+{
+  "context": {
+    "version": "2.0.0",
+    "networkId": "beckn.one/testnet-retail",
+    "bapId": "bap1.apexsb.iontest.in",
+    "bapUri": "https://bap1.apexsb.iontest.in/bap/receiver",
+    "transactionId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "messageId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "timestamp": "2026-06-01T08:00:00.000Z",
+    "ttl": "PT30S",
+    "location": {
+      "city": {
+        "code": "JKT"
+      },
+      "country": {
+        "code": "ID"
+      }
+    },
+    "action": "on_discover",
+    "bppId": "bpp1.apexsb.iontest.in",
+    "bppUri": "https://bpp1.apexsb.iontest.in/bpp/receiver"
+  },
+  "message": {
+    "catalogs": [
+      {
+        "id": "cat-health-b2c-001",
+        "descriptor": {
+          "name": "Health & Beauty - AUC-R Catalog",
+          "shortDesc": "Katalog Health & Beauty untuk pola AUC-R di jaringan ION Trade"
+        },
+        "provider": {
+          "id": "PROV-HEALTH-JKT-001",
+          "descriptor": {
+            "name": "Apotek & Kecantikan Wardah Official",
+            "shortDesc": "Distributor resmi produk kecantikan Wardah, Emina, dan suplemen kesehatan."
+          }
+        },
+        "resources": [
+          {
+            "id": "res-health-001",
+            "descriptor": {
+              "name": "Wardah Hydrating Aloe Vera Moisturizer - 100ml",
+              "shortDesc": "Pelembab wajah aloe vera ringan untuk kulit normal-kombinasi, SPF 15, 100ml",
+              "longDesc": "Wardah Hydrating Aloe Vera Moisturizer mengandung 70% aloe vera organik yang menenangkan dan menghidrasi kulit. SPF 15 untuk perlindungan dasar dari UVB. Formula oil-free cocok untuk kulit normal hingga kombinasi. Hypoallergenic, bebas paraben. Halal MUI."
+            },
+            "resourceAttributes": {
+              "@context": "https://schema.ion.id/extensions/trade/resource/v1/context.jsonld",
+              "@type": "ion:IONTradeResource",
+              "quantity": {
+                "value": 100,
+                "unit": "milliliter"
+              },
+              "resourceStructure": "PLAIN",
+              "resourceTangibility": "PHYSICAL",
+              "logisticsServiceType": "HYPERLOCAL",
+              "ageRestricted": false,
+              "countryOfOrigin": "IDN",
+              "images": [
+                "https://cdn.example.ion.id/products/wrd-aloe-moist-100ml-front.jpg"
+              ],
+              "availability": {
+                "status": "IN_STOCK",
+                "maxOrderQty": 100,
+                "backorderAllowed": false,
+                "substitutionAllowed": false
+              },
+              "identity": {
+                "brand": "Wardah",
+                "sku": "WRD-ALOE-MOIST-100ML"
+              },
+              "price": {
+                "currency": "IDR",
+                "value": "65000"
+              }
+            }
+          },
+          {
+            "id": "res-health-002",
+            "descriptor": {
+              "name": "Blackmores Vitamin C 1000mg - 60 Tablet",
+              "shortDesc": "Suplemen Vitamin C 1000mg dosis tinggi, anti-oksidan, 60 tablet effervescent",
+              "longDesc": "Blackmores Vitamin C 1000mg hadir dalam bentuk tablet effervescent rasa jeruk. Mendukung sistem imun, pembentukan kolagen, dan penyerapan zat besi. Dosis: 1 tablet/hari dilarutkan dalam air. Bebas gula, cocok untuk penderita diabetes. 60 tablet per kemasan."
+            },
+            "resourceAttributes": {
+              "@context": "https://schema.ion.id/extensions/trade/resource/v1/context.jsonld",
+              "@type": "ion:IONTradeResource",
+              "quantity": {
+                "value": 60,
+                "unit": "tablet"
+              },
+              "resourceStructure": "PLAIN",
+              "resourceTangibility": "PHYSICAL",
+              "logisticsServiceType": "HYPERLOCAL",
+              "ageRestricted": false,
+              "countryOfOrigin": "AUS",
+              "images": [
+                "https://cdn.example.ion.id/products/blk-vit-c1000-60t-front.jpg"
+              ],
+              "availability": {
+                "status": "IN_STOCK",
+                "maxOrderQty": 80,
+                "backorderAllowed": false,
+                "substitutionAllowed": false
+              },
+              "identity": {
+                "brand": "Blackmores",
+                "sku": "BLK-VIT-C1000-60T"
+              },
+              "price": {
+                "currency": "IDR",
+                "value": "129000"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

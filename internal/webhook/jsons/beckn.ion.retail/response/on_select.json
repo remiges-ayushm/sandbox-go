@@ -1,0 +1,95 @@
+{
+    "context": {
+        "version": "2.0.0",
+        "action": "on_select",
+        "timestamp": "2026-03-18T00:43:20.014Z",
+        "message_id": "3cc082e2-b6bc-4936-b51c-10686b69bc3a",
+        "transaction_id": "b2bb2763-8342-4c0b-a32a-2bc6a9dab8f2",
+        "bap_id": "sandbox.food-finder.com",
+        "bap_uri": "http://onix-bap:8081/bap/receiver",
+        "bpp_id": "sandbox.open-kitchen.com",
+        "bpp_uri": "http://onix-bpp:8082/bpp/receiver",
+        "ttl": "PT30S",
+        "domain": "beckn:ion:retail:1.0"
+    },
+    "message": {
+        "order": {
+            "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/main/schema/core/v2/context.jsonld",
+            "@type": "beckn:Order",
+            "beckn:orderStatus": "CREATED",
+            "beckn:seller": "P1",
+            "beckn:buyer": {
+                "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/main/schema/core/v2/context.jsonld",
+                "@type": "beckn:Buyer",
+                "beckn:id": "B1"
+            },
+            "beckn:orderItems": [
+                {
+                    "beckn:orderedItem": "I1",
+                    "beckn:quantity": {
+                        "unitQuantity": 2
+                    },
+                    "beckn:price": {
+                        "currency": "INR",
+                        "value": 340.0,
+                        "components": [
+                            {
+                                "type": "UNIT",
+                                "value": 170.0,
+                                "currency": "INR"
+                            }
+                        ]
+                    }
+                }
+            ],
+            "beckn:fulfillment": {
+                "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/main/schema/core/v2/context.jsonld",
+                "@type": "beckn:Fulfillment",
+                "beckn:id": "F1",
+                "beckn:mode": "DELIVERY",
+                "beckn:deliveryAttributes": {
+                    "@context": "https://raw.githubusercontent.com/beckn/local-retail/refs/heads/feat/devkit/schema/RetailCoreFulfillment/v2/context.jsonld",
+                    "@type": "retail:RetailCoreFulfillmentAttributes",
+                    "supportedFulfillmentTypes": [
+                        "DELIVERY"
+                    ],
+                    "sla": {
+                        "min": "PT60M",
+                        "max": "PT60M",
+                        "unitBasis": "ORDER_CONFIRMATION"
+                    }
+                }
+            },
+            "beckn:orderValue": {
+                "currency": "INR",
+                "value": 424.0,
+                "components": [
+                    {
+                        "type": "UNIT",
+                        "value": 170.0,
+                        "currency": "INR",
+                        "description": "Item price (Atta, quantity 1)"
+                    },
+                    {
+                        "type": "DELIVERY",
+                        "value": 50.0,
+                        "currency": "INR",
+                        "description": "Delivery charges"
+                    },
+                    {
+                        "type": "TAX",
+                        "value": 9.0,
+                        "currency": "INR",
+                        "description": "Tax on fulfillment"
+                    },
+                    {
+                        "type": "FEE",
+                        "value": 25.0,
+                        "currency": "INR",
+                        "description": "Packing charges"
+                    }
+                ]
+            }
+        }
+    }
+}

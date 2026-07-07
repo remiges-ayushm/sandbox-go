@@ -1,0 +1,191 @@
+{
+  "context": {
+    "version": "2.0.0",
+    "action": "on_cancel",
+    "domain": "beckn.one:commerce:hospitality:1.0",
+    "timestamp": "2025-12-07T14:00:02+07:00",
+    "message_id": "msg-on-cancel-hotel-001",
+    "transaction_id": "txn-hotel-bangkok-001",
+    "bap_id": "travel-booking-app.example.com",
+    "bap_uri": "https://travel-booking-app.example.com",
+    "bpp_id": "hotel-aggregator-platform.com",
+    "bpp_uri": "https://hotel-aggregator-platform.com",
+    "ttl": "PT30S"
+  },
+  "message": {
+    "order": {
+      "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/draft/schema/core/v2/context.jsonld",
+      "@type": "beckn:Order",
+      "beckn:id": "order-hotel-bangkok-001",
+      "beckn:orderStatus": "CANCELLED",
+      "beckn:seller": {
+        "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/draft/schema/core/v2/context.jsonld",
+        "@type": "beckn:Provider",
+        "beckn:id": "provider-grand-siam-hotel",
+        "beckn:descriptor": {
+          "@type": "beckn:Descriptor",
+          "schema:name": "Grand Siam Hotel",
+          "beckn:shortDesc": "Luxury hotel in the heart of Bangkok"
+        }
+      },
+      "beckn:buyer": {
+        "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/draft/schema/core/v2/context.jsonld",
+        "@type": "beckn:Buyer",
+        "schema:name": "Sarah Johnson",
+        "schema:email": "sarah.johnson@example.com",
+        "schema:telephone": "+1 555 123 4567"
+      },
+      "beckn:orderItems": [
+        {
+          "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/draft/schema/core/v2/context.jsonld",
+          "@type": "beckn:OrderItem",
+          "beckn:lineId": "line-001",
+          "beckn:orderedItem": "item-hotel-grand-siam-deluxe",
+          "beckn:acceptedOffer": {
+            "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/draft/schema/core/v2/context.jsonld",
+            "@type": "beckn:Offer",
+            "beckn:id": "offer-grand-siam-deluxe-base",
+            "beckn:descriptor": {
+              "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/draft/schema/core/v2/context.jsonld",
+              "@type": "beckn:Descriptor",
+              "schema:name": "Deluxe Room with Breakfast - 5 Nights",
+              "beckn:shortDesc": "Standard rate for 5 nights stay"
+            },
+            "beckn:price": {
+              "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/draft/schema/core/v2/context.jsonld",
+              "@type": "schema:PriceSpecification",
+              "schema:priceCurrency": "USD",
+              "schema:price": 120.00
+            },
+            "beckn:addOnItems": [
+              {
+                "@type": "schema:Offer",
+                "@id": "addon-item-late-checkout",
+                "schema:name": "Late Check-out",
+                "schema:description": "Check-out at 6:00 PM instead of 12:00 PM",
+                "schema:price": {
+                  "@type": "schema:PriceSpecification",
+                  "schema:priceCurrency": "USD",
+                  "schema:price": 30.00
+                }
+              },
+              {
+                "@type": "schema:Offer",
+                "@id": "addon-item-airport-transfer",
+                "schema:name": "Airport Transfer",
+                "schema:description": "One-way airport pickup service",
+                "schema:price": {
+                  "@type": "schema:PriceSpecification",
+                  "schema:priceCurrency": "USD",
+                  "schema:price": 45.00
+                }
+              }
+            ]
+          },
+          "beckn:quantity": {
+            "@type": "schema:QuantitativeValue",
+            "schema:value": 5,
+            "schema:unitCode": "NIGHTS"
+          },
+          "beckn:price": {
+            "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/draft/schema/core/v2/context.jsonld",
+            "@type": "schema:PriceSpecification",
+            "schema:priceCurrency": "USD",
+            "schema:price": 120.00
+          },
+          "beckn:orderItemAttributes": {
+            "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/draft/schema/HotelService/v1/context.jsonld",
+            "@type": "beckn:HotelService",
+            "hotel:hotelName": "Grand Siam Hotel",
+            "hotel:roomType": "Deluxe Room",
+            "hotel:bedType": "King",
+            "hotel:maxOccupancy": 2,
+            "hotel:checkInTime": "14:00",
+            "hotel:checkOutTime": "12:00"
+          }
+        }
+      ],
+      "beckn:orderValue": {
+        "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/draft/schema/core/v2/context.jsonld",
+        "@type": "schema:PriceSpecification",
+        "schema:priceCurrency": "USD",
+        "schema:price": 692.25,
+        "beckn:components": [
+          {
+            "@type": "beckn:PriceComponent",
+            "beckn:type": "UNIT",
+            "beckn:value": 600.00,
+            "beckn:currency": "USD",
+            "beckn:description": "Room charges (5 nights × $120)"
+          },
+          {
+            "@type": "beckn:PriceComponent",
+            "beckn:type": "UNIT",
+            "beckn:value": 75.00,
+            "beckn:currency": "USD",
+            "beckn:description": "Add-ons (Late checkout + Airport transfer)"
+          },
+          {
+            "@type": "beckn:PriceComponent",
+            "beckn:type": "FEE",
+            "beckn:value": 30.00,
+            "beckn:currency": "USD",
+            "beckn:description": "Service charge"
+          },
+          {
+            "@type": "beckn:PriceComponent",
+            "beckn:type": "TAX",
+            "beckn:value": 47.25,
+            "beckn:currency": "USD",
+            "beckn:description": "VAT (7%)"
+          },
+          {
+            "@type": "beckn:PriceComponent",
+            "beckn:type": "FEE",
+            "beckn:value": -60.00,
+            "beckn:currency": "USD",
+            "beckn:description": "Cancellation fee"
+          }
+        ]
+      },
+      "beckn:payment": {
+        "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/draft/schema/core/v2/context.jsonld",
+        "@type": "beckn:Payment",
+        "beckn:type": "PRE_FULFILLMENT",
+        "beckn:status": "REFUNDED",
+        "beckn:amount": {
+          "@type": "schema:PriceSpecification",
+          "schema:priceCurrency": "USD",
+          "schema:price": 692.25
+        },
+        "beckn:params": {
+          "currency": "USD",
+          "amount": "692.25",
+          "transaction_id": "TXN-PAY-HOTEL-20251201-001",
+          "refund_transaction_id": "TXN-REFUND-HOTEL-20251207-001"
+        }
+      },
+      "beckn:fulfillment": {
+        "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/draft/schema/core/v2/context.jsonld",
+        "@type": "beckn:Fulfillment",
+        "beckn:id": "fulfillment-hotel-stay",
+        "beckn:type": "hotel_stay",
+        "beckn:state": "CANCELLED",
+        "beckn:time": {
+          "@type": "beckn:TimePeriod",
+          "schema:startDate": "2025-12-10T14:00:00+07:00",
+          "schema:endDate": "2025-12-15T12:00:00+07:00"
+        }
+      },
+      "beckn:orderAttributes": {
+        "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/draft/schema/HotelBooking/v1/context.jsonld",
+        "@type": "beckn:HotelBooking",
+        "bookingId": "HBNK1025",
+        "bookingReference": "GS-20251210-HBNK1025",
+        "cancellationDate": "2025-12-07T14:00:00+07:00",
+        "refundAmount": 692.25,
+        "refundStatus": "PROCESSED"
+      }
+    }
+  }
+}

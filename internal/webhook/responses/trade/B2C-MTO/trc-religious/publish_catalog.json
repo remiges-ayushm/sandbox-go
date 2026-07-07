@@ -1,0 +1,89 @@
+{
+  "_meta": {
+    "description": "B2C-MTO - catalog/publish. BPP mempublikasikan katalog Religious & Cultural Goods ke ION network registry.",
+    "pattern": "B2C-MTO",
+    "step": "catalog/publish",
+    "sent_by": "BPP",
+    "received_by": "ION Network Registry",
+    "schemaPacks": [
+      "trade/resource/v1",
+      "trade/offer/v1",
+      "trade/provider/v1"
+    ]
+  },
+  "context": {
+    "domain": "ion:trade",
+    "action": "catalog/publish",
+    "version": "2.0.0",
+    "bppId": "merchant-sandbox.ion.id",
+    "bppUri": "https://merchant-sandbox.ion.id/bpp",
+    "networkId": "ion.id",
+    "transactionId": "33333333-3333-4333-8333-333333333333",
+    "messageId": "aabbccdd-trc--4433-8822-112233445566",
+    "timestamp": "2026-06-01T07:00:00.000+07:00",
+    "ttl": "PT24H",
+    "location": {
+      "country": {
+        "code": "IDN"
+      }
+    }
+  },
+  "message": {
+    "catalogs": [
+      {
+        "id": "cat-relig-b2c-001",
+        "descriptor": {
+          "name": "Religious & Cultural Goods - B2C-MTO Catalog",
+          "shortDesc": "Katalog Religious & Cultural Goods untuk pola B2C-MTO"
+        },
+        "provider": {
+          "id": "PROV-RELIG-JKT-001",
+          "descriptor": {
+            "name": "Toko Alat Ibadah Barokah",
+            "shortDesc": "Pusat perlengkapan ibadah Islam: sajadah, mukena, sarung, Al-Quran, dan tasbih."
+          }
+        },
+        "resources": [
+          {
+            "id": "res-relig-001",
+            "descriptor": {
+              "name": "Al-Quran Tajwid Warna Mushaf Madinah A5 - Riwayat Hafs",
+              "shortDesc": "Al-Quran dengan tajwid warna, skrip Madinah, ukuran A5, riwayat Hafs, terjemahan Indonesia",
+              "longDesc": "Al-Quran Mushaf Madinah dengan penanda tajwid warna untuk memudahkan pelafalan yang benar. Huruf naskh berdasarkan standar Madinah. Ukuran A5 (14.8x21cm). Riwayat Hafs 'an Ashim. Dilengkapi terjemahan Bahasa Indonesia dan transliterasi latin. Dicetak di kertas khusus anti-silau. Jilid hardcover. Halal MUI. Penerbit: Al-Fatih."
+            },
+            "resourceAttributes": {
+              "@context": "https://schema.ion.id/extensions/trade/resource/v1/context.jsonld",
+              "@type": "ion:IONTradeResource",
+              "quantity": {
+                "value": 1,
+                "unit": "piece"
+              },
+              "resourceStructure": "PLAIN",
+              "resourceTangibility": "PHYSICAL",
+              "logisticsServiceType": "HYPERLOCAL",
+              "ageRestricted": false,
+              "countryOfOrigin": "IDN",
+              "images": [
+                "https://cdn.example.ion.id/products/af-quran-tajwid-a5-hafs-front.jpg"
+              ],
+              "availability": {
+                "status": "IN_STOCK",
+                "maxOrderQty": 200,
+                "backorderAllowed": false,
+                "substitutionAllowed": false
+              },
+              "identity": {
+                "brand": "Al-Fatih Berkah",
+                "sku": "AF-QURAN-TAJWID-A5-HAFS"
+              },
+              "price": {
+                "currency": "IDR",
+                "value": "165000"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

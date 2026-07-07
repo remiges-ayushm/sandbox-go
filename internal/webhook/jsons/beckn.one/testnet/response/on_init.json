@@ -1,0 +1,67 @@
+{
+    "context": {
+        "networkId": "beckn.one/testnet",
+        "action": "on_init",
+        "version": "2.0.0",
+        "bapId": "bap.example.com",
+        "bapUri": "http://onix-bap:8081/bap/receiver",
+        "bppId": "bpp.example.com",
+        "bppUri": "http://onix-bpp:8082/bpp/receiver",
+        "transactionId": "966b8e9e-a9e7-4d13-a521-7db16d80a10e",
+        "messageId": "bb748809-592a-4b5d-a34d-d1a0573f0cee",
+        "timestamp": "2026-04-08T17:50:00+05:30",
+        "ttl": "PT30S"
+    },
+    "message": {
+        "contract": {
+            "commitments": [
+                {
+                    "status": {
+                        "descriptor": {
+                            "code": "DRAFT"
+                        }
+                    },
+                    "resources": [
+                        {
+                            "id": "resource-001",
+                            "descriptor": {
+                                "name": "Basic Service Package",
+                                "code": "BSP-001"
+                            },
+                            "quantity": {
+                                "unitQuantity": 2,
+                                "unitCode": "UNIT"
+                            }
+                        }
+                    ],
+                    "offer": {
+                        "id": "offer-001",
+                        "resourceIds": [
+                            "resource-001"
+                        ]
+                    }
+                }
+            ],
+            "participants": [
+                {
+                    "id": "participant-buyer-001",
+                    "descriptor": {
+                        "name": "John Doe",
+                        "code": "buyer"
+                    }
+                }
+            ],
+            "performance": [
+                {
+                    "id": "perf-001"
+                }
+            ],
+            "settlements": [
+                {
+                    "id": "settlement-001",
+                    "status": "DRAFT"
+                }
+            ]
+        }
+    }
+}

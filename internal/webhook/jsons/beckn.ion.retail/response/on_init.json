@@ -1,0 +1,173 @@
+{
+    "context": {
+    "version": "2.0.0",
+    "action": "on_init",
+    "timestamp": "2026-03-18T00:44:23.528Z",
+    "message_id": "f460c1ac-a337-442d-975e-91834aee0815",
+    "transaction_id": "b2bb2763-8342-4c0b-a32a-2bc6a9dab8f2",
+    "bap_id": "sandbox.food-finder.com",
+    "bap_uri": "http://onix-bap:8081/bap/receiver",
+    "bpp_id": "sandbox.open-kitchen.com",
+    "bpp_uri": "http://onix-bpp:8082/bpp/receiver",
+    "ttl": "PT30S",
+    "domain": "beckn:ion:retail:1.0"
+  },
+  "message": {
+  "order": {
+     "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/main/schema/core/v2/context.jsonld",
+     "@type": "beckn:Order",
+     "beckn:orderStatus": "CREATED",
+     "beckn:seller": "P1",
+     "beckn:buyer": {
+       "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/main/schema/core/v2/context.jsonld",
+       "@type": "beckn:Buyer",
+       "beckn:id": "B1",
+       "beckn:displayName": "buyer",
+       "beckn:telephone": "9886098860",
+       "beckn:email": "nobody@nomail.com",
+       "beckn:taxID": "XXXXXXXXXXXXXXX",
+       "beckn:buyerAttributes": {
+         "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/main/schema/core/v2/context.jsonld",
+         "@type": "BuyerAddress",
+         "address": {
+           "streetAddress": "my building name or house #, my street name",
+           "addressLocality": "Bengaluru",
+           "addressRegion": "Karnataka",
+           "postalCode": "560037",
+           "addressCountry": "IND"
+         }
+       }
+     },
+
+
+     "beckn:orderItems": [
+       {
+         "beckn:orderedItem": "I1",
+         "beckn:quantity": {
+           "unitQuantity": 2
+         },
+         "beckn:price": {
+           "currency": "INR",
+           "value": 340.0,
+           "components": [
+             {
+               "type": "UNIT",
+               "value": 170.0,
+               "currency": "INR"
+             }
+           ]
+         }
+       }
+     ],
+
+
+     "beckn:fulfillment": {
+       "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/main/schema/core/v2/context.jsonld",
+       "@type": "beckn:Fulfillment",
+       "beckn:id": "F1",
+       "beckn:mode": "DELIVERY",
+
+
+       "beckn:deliveryAttributes": {
+         "@context": "https://raw.githubusercontent.com/beckn/local-retail/refs/heads/feat/devkit/schema/RetailCoreFulfillment/v2/context.jsonld",
+         "@type": "retail:RetailCoreFulfillmentAttributes",
+         "supportedFulfillmentTypes": ["DELIVERY"],
+         "deliveryDetails": {
+           "address": {
+             "@type": "beckn:Location",
+             "geo": {
+               "type": "Point",
+               "coordinates": [77.9283, 12.4535]
+             },
+             "address": {
+               "streetAddress": "my building name or house #, my street name",
+               "addressLocality": "Bengaluru",
+               "addressRegion": "Karnataka",
+               "postalCode": "560037",
+               "addressCountry": "IND"
+             }
+           }
+         }
+       }
+     },
+
+
+     "beckn:orderValue": {
+       "currency": "INR",
+       "value": 424.0,
+       "components": [
+         {
+           "type": "UNIT",
+           "value": 340.0,
+           "currency": "INR",
+           "description": "Item price (Atta, quantity 2)"
+         },
+         {
+           "type": "DELIVERY",
+           "value": 50.0,
+           "currency": "INR",
+           "description": "Delivery charges"
+         },
+         {
+           "type": "TAX",
+           "value": 9.0,
+           "currency": "INR",
+           "description": "Tax on fulfillment"
+         },
+         {
+           "type": "FEE",
+           "value": 25.0,
+           "currency": "INR",
+           "description": "Packing charges"
+         },
+         {
+           "type": "TAX",
+           "value": 0.0,
+           "currency": "INR",
+           "description": "Tax on item"
+         },
+         {
+           "type": "DISCOUNT",
+           "value": -10.0,
+           "currency": "INR",
+           "description": "Discount"
+         },
+         {
+           "type": "FEE",
+           "value": 10.0,
+           "currency": "INR",
+           "description": "Convenience fee"
+         }
+       ]
+     },
+
+
+     "beckn:payment": {
+       "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/main/schema/core/v2/context.jsonld",
+       "@type": "beckn:Payment",
+       "beckn:id": "payment-T2",
+       "beckn:amount": {
+         "currency": "INR",
+         "value": 424.0
+       },
+       "beckn:beneficiary": "BAP",
+       "beckn:paymentStatus": "INITIATED",
+       "beckn:paymentAttributes": {
+         "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/main/schema/PaymentSettlement/v1/context.jsonld",
+         "@type": "PaymentSettlement",
+         "settlementAccounts": [
+           {
+             "beneficiaryId": "snp.com",
+             "accountHolderName": "xxxxx",
+             "accountNumber": "XXXXXXXXXX",
+             "ifscCode": "XXXXXXXXX",
+             "bankName": "xxxx",
+             "vpa": "gft@oksbi"
+           }
+         ]
+       }
+     }
+   }
+
+  }
+}

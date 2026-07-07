@@ -1,0 +1,20 @@
+{
+  "context": {
+    "version": "2.0.0",
+    "action": "on_rating",
+    "domain": "beckn.one:deg:p2p-enrollment:2.0.0",
+    "timestamp": "2024-11-01T12:00:05Z",
+    "message_id": "msg-on-rating-enrollment-001",
+    "transaction_id": "txn-rating-enrollment-001",
+    "bap_id": "utility-portal.example.com",
+    "bap_uri": "https://utility-portal.example.com/beckn",
+    "bpp_id": "vpp-program-owner.example.com",
+    "bpp_uri": "https://vpp-program-owner.example.com/beckn",
+    "ttl": "PT30S"
+  },
+  "message": {
+    "feedback_ack": true,
+    "rating_ack": true
+  }
+}
+

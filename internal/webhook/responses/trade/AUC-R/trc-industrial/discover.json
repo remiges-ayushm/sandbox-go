@@ -1,0 +1,31 @@
+{
+  "context": {
+    "version": "2.0.0",
+    "networkId": "beckn.one/testnet-retail",
+    "bapId": "bap1.apexsb.iontest.in",
+    "bapUri": "https://bap1.apexsb.iontest.in/bap/receiver",
+    "transactionId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "messageId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "timestamp": "2026-06-01T08:00:00.000Z",
+    "ttl": "PT30S",
+    "location": {
+      "city": {
+        "code": "JKT"
+      },
+      "country": {
+        "code": "ID"
+      }
+    },
+    "action": "discover"
+  },
+  "message": {
+    "intent": {
+      "textSearch": "baut mur pipa PVC kabel NYA MCB panel listrik peralatan industri",
+      "category": {
+        "descriptor": {
+          "name": "Industrial & B2B Supplies"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "_meta": {
+    "description": "XB - catalog/publish. BPP mempublikasikan katalog Sports & Outdoors ke ION network registry.",
+    "pattern": "XB",
+    "step": "catalog/publish",
+    "sent_by": "BPP",
+    "received_by": "ION Network Registry",
+    "schemaPacks": [
+      "trade/resource/v1",
+      "trade/offer/v1",
+      "trade/provider/v1"
+    ]
+  },
+  "context": {
+    "domain": "ion:trade",
+    "action": "catalog/publish",
+    "version": "2.0.0",
+    "bppId": "merchant-sandbox.ion.id",
+    "bppUri": "https://merchant-sandbox.ion.id/bpp",
+    "networkId": "ion.id",
+    "transactionId": "33333333-3333-4333-8333-333333333333",
+    "messageId": "aabbccdd-trc--4433-8822-112233445566",
+    "timestamp": "2026-06-01T07:00:00.000+07:00",
+    "ttl": "PT24H",
+    "location": {
+      "country": {
+        "code": "IDN"
+      }
+    }
+  },
+  "message": {
+    "catalogs": [
+      {
+        "id": "cat-sport-b2c-001",
+        "descriptor": {
+          "name": "Sports & Outdoors - XB Catalog",
+          "shortDesc": "Katalog Sports & Outdoors untuk pola XB"
+        },
+        "provider": {
+          "id": "PROV-SPORT-JKT-001",
+          "descriptor": {
+            "name": "Sport Station Indonesia Official",
+            "shortDesc": "Perlengkapan olahraga terlengkap: sepatu, pakaian, peralatan gym, dan outdoor gear."
+          }
+        },
+        "resources": [
+          {
+            "id": "res-sport-001",
+            "descriptor": {
+              "name": "Specs Metasala Rival Sepatu Futsal - Putih/Hitam UK42",
+              "shortDesc": "Sepatu futsal non-marking sole karet herringbone, upper microfibre, UK 42",
+              "longDesc": "Specs Metasala Rival adalah sepatu futsal indoor dengan sol karet non-marking bermotif herringbone untuk grip optimal di lapangan indoor. Upper microfibre reinforced dengan pelindung toe-box. Midsole EVA untuk cushioning ringan. Ukuran UK 42 (EU 42). Berat per pasang: 290g. Bersertifikat PSSI."
+            },
+            "resourceAttributes": {
+              "@context": "https://schema.ion.id/extensions/trade/resource/v1/context.jsonld",
+              "@type": "ion:IONTradeResource",
+              "quantity": {
+                "value": 1,
+                "unit": "pair"
+              },
+              "resourceStructure": "PLAIN",
+              "resourceTangibility": "PHYSICAL",
+              "logisticsServiceType": "HYPERLOCAL",
+              "ageRestricted": false,
+              "countryOfOrigin": "IDN",
+              "images": [
+                "https://cdn.example.ion.id/products/spec-meta-rvl-wht-42-front.jpg"
+              ],
+              "availability": {
+                "status": "IN_STOCK",
+                "maxOrderQty": 20,
+                "backorderAllowed": false,
+                "substitutionAllowed": false
+              },
+              "identity": {
+                "brand": "Specs",
+                "sku": "SPEC-META-RVL-WHT-42"
+              },
+              "price": {
+                "currency": "IDR",
+                "value": "329000"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

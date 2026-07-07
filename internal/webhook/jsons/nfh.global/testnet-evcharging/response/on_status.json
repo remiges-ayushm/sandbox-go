@@ -1,0 +1,169 @@
+{
+  "context": {
+    "version": "2.0.0",
+    "action": "on_status",
+    "networkId": "nfh.global/testnet-evcharging",
+    "bapId": "example-bap.com",
+    "bapUri": "https://example-bap.com/pilot/bap/energy/v2",
+    "transactionId": "2b4d69aa-22e4-4c78-9f56-5a7b9e2b2002",
+    "messageId": "c69b4c1e-fb7e-469d-ae90-00f4d5e82b65",
+    "timestamp": "2025-01-27T10:05:02Z",
+    "ttl": "PT30S",
+    "bppId": "example-bpp.com",
+    "bppUri": "https://example-bpp.com/pilot/bpp/energy/v2"
+  },
+  "message": {
+    "contract": {
+      "id": "contract-ev-charging-001",
+      "status": {
+        "code": "ACTIVE"
+      },
+      "participants": [
+        {
+          "id": "cpo1.com",
+          "descriptor": {
+            "name": "EcoPower Charging Pvt Ltd"
+          },
+          "participantAttributes": {
+            "@context": "https://schema.beckn.io/Provider/v2.1/context.jsonld",
+            "@type": "Provider",
+            "id": "cpo1.com",
+            "descriptor": {
+              "name": "EcoPower Charging Pvt Ltd"
+            }
+          }
+        },
+        {
+          "id": "user-123",
+          "descriptor": {
+            "name": "Ravi Kumar"
+          },
+          "participantAttributes": {
+            "@context": "https://schema.beckn.io/Consumer/v2.0/context.jsonld",
+            "@type": "Consumer",
+            "role": "buyer",
+            "person": {
+              "id": "user-123",
+              "name": "Ravi Kumar",
+              "telephone": "+91-9876543210",
+              "email": "ravi.kumar@example.com"
+            }
+          }
+        }
+      ],
+      "commitments": [
+        {
+          "id": "commitment-001",
+          "status": {
+            "descriptor": {
+              "code": "ACTIVE"
+            }
+          },
+          "resources": [
+            {
+              "id": "IND*ecopower-charging*cs-01*IN*ECO*BTM*01*CCS2*A*CCS2-A",
+              "quantity": {
+                "unitCode": "KWH",
+                "unitQuantity": 2.5
+              }
+            }
+          ],
+          "offer": {
+            "id": "offer-ccs2-60kw-kwh",
+            "@context": "https://schema.beckn.io/Offer/v2.0/context.jsonld"
+          }
+        }
+      ],
+      "consideration": [
+        {
+          "id": "consideration-001",
+          "status": {
+            "code": "QUOTED"
+          },
+          "considerationAttributes": {
+            "@context": "https://schema.beckn.io/PriceSpecification/v2.1/context.jsonld",
+            "@type": "PriceSpecification",
+            "currency": "INR",
+            "totalAmount": 143.95,
+            "breakup": [
+              {
+                "title": "Base charging session cost",
+                "amount": 112.5,
+                "type": "BASE_PRICE"
+              },
+              {
+                "title": "Surge price",
+                "amount": 20.0,
+                "type": "SURCHARGE"
+              },
+              {
+                "title": "Offer discount",
+                "amount": -15.0,
+                "type": "DISCOUNT"
+              },
+              {
+                "title": "Service fee",
+                "amount": 10.0,
+                "type": "FEE"
+              },
+              {
+                "title": "Overcharge estimation",
+                "amount": 13.64,
+                "type": "FEE"
+              },
+              {
+                "title": "Buyer finder fee",
+                "amount": 2.81,
+                "type": "FEE"
+              }
+            ],
+            "paymentMethods": [
+              "UPI",
+              "WALLET",
+              "BANK_TRANSFER"
+            ]
+          }
+        }
+      ],
+      "performance": [
+        {
+          "id": "fulfillment-001",
+          "commitmentIds": [
+            "commitment-001"
+          ],
+          "performanceAttributes": {
+            "@context": "https://schema.beckn.io/EvChargingSession/1.0",
+            "@type": "ChargingSession",
+            "connectorType": "CCS2",
+            "maxPowerKW": 50,
+            "sessionStatus": "PENDING",
+            "connectorStatus": "PREPARING"
+          }
+        }
+      ],
+      "settlements": [
+        {
+          "id": "payment-123e4567-e89b-12d3-a456-426614174000",
+          "status": "COMPLETE",
+          "settlementAttributes": {
+            "@context": "https://raw.githubusercontent.com/bhim/ubc-tsd/main/beckn-schemas/UBCExtensions/v1/context.jsonld",
+            "@type": "UBCPaymentAttributes",
+            "upiTransactionId": "UPI123456789012"
+          }
+        }
+      ],
+      "contractAttributes": {
+        "@context": "https://schema.beckn.io/EvChargingSession/1.0",
+        "@type": "ChargingSession",
+        "buyerFinderFee": {
+          "feeType": "PERCENTAGE",
+          "feeValue": 2.5
+        },
+        "preferences": {
+          "startTime": "2026-01-04T08:00:00Z",
+          "endTime": "2026-01-04T20:00:00Z"
+        }
+      }
+    }
+  }
+}

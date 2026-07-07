@@ -1,0 +1,25 @@
+{
+  "context": {
+    "version": "2.0.0",
+    "action": "on_support",
+    "domain": "beckn.one:commerce:retail:1.0",
+    "timestamp": "2025-01-28T16:00:02+10:00",
+    "message_id": "msg-on-support-001",
+    "transaction_id": "txn-macadamia-journey-001",
+    "bap_id": "aloha-buyer-app.hawaii.com",
+    "bap_uri": "https://aloha-buyer-app.hawaii.com",
+    "bpp_id": "aloha-seller-platform.hawaii.com",
+    "bpp_uri": "https://aloha-seller-platform.hawaii.com",
+    "ttl": "PT30S"
+  },
+  "message": {
+    "support": {
+      "name": "Mauna Loa Store Customer Support",
+      "phone": "+1-808-555-9000",
+      "email": "support@maunaloa.com",
+      "url": "https://support.maunaloa.com",
+      "hours": "24/7",
+      "channels": ["phone", "email", "web", "chat"]
+    }
+  }
+}

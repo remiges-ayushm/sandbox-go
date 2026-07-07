@@ -1,0 +1,127 @@
+{
+  "context": {
+    "version": "2.0.0",
+    "action": "on_cancel",
+    "domain": "beckn.one:commerce:retail:1.0",
+    "timestamp": "2025-01-27T10:20:02+10:00",
+    "message_id": "msg-on-cancel-001",
+    "transaction_id": "txn-macadamia-journey-002",
+    "bap_id": "aloha-buyer-app.hawaii.com",
+    "bap_uri": "https://aloha-buyer-app.hawaii.com",
+    "bpp_id": "aloha-seller-platform.hawaii.com",
+    "bpp_uri": "https://aloha-seller-platform.hawaii.com",
+    "ttl": "PT30S"
+  },
+  "message": {
+    "order": {
+      "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/draft/schema/core/v2/context.jsonld",
+      "@type": "beckn:Order",
+      "beckn:id": "order-macadamia-20250127-002",
+      "beckn:orderNumber": "ORD-ITC-002",
+      "beckn:orderStatus": "CANCELLED",
+      "beckn:seller": "provider-island-treats",
+      "beckn:buyer": {
+        "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/draft/schema/core/v2/context.jsonld",
+        "@type": "beckn:Buyer",
+        "beckn:id": "buyer-sarah-johnson",
+        "beckn:role": "BUYER",
+        "beckn:name": "Sarah Johnson",
+        "beckn:address": "2365 Kalakaua Ave, Royal Hawaiian Hotel, Room 815, Honolulu, HI 96815, US",
+        "beckn:email": "sarah.johnson@email.com",
+        "beckn:phone": "+1-808-555-0123"
+      },
+      "beckn:orderItems": [
+        {
+          "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/draft/schema/core/v2/context.jsonld",
+          "@type": "beckn:OrderItem",
+          "beckn:lineId": "line-002",
+          "beckn:orderedItem": "item-macadamia-salted-200g",
+          "beckn:acceptedOffer": {
+            "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/draft/schema/core/v2/context.jsonld",
+            "@type": "beckn:Offer",
+            "beckn:id": "offer-salted-200g",
+            "beckn:descriptor": {
+              "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/draft/schema/core/v2/context.jsonld",
+              "@type": "beckn:Descriptor",
+              "schema:name": "Classic Salted Macadamia Nuts",
+              "beckn:shortDesc": "Dry roasted macadamia nuts with sea salt"
+            },
+            "beckn:price": {
+              "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/draft/schema/core/v2/context.jsonld",
+              "@type": "schema:PriceSpecification",
+              "schema:priceCurrency": "USD",
+              "schema:price": 10.50
+            }
+          },
+          "beckn:quantity": 2,
+          "beckn:price": {
+            "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/draft/schema/core/v2/context.jsonld",
+            "@type": "schema:PriceSpecification",
+            "schema:priceCurrency": "USD",
+            "schema:price": 21.00
+          },
+          "beckn:orderItemAttributes": {
+            "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/draft/schema/GroceryItem/v1/context.jsonld",
+            "@type": "beckn:GroceryItem",
+            "grocery:brand": "Island Treats Co.",
+            "grocery:weight": "200g",
+            "grocery:packaging": "Can",
+            "grocery:origin": "Oahu, Hawaii, USA",
+            "grocery:category": "packaged_food",
+            "grocery:subcategory": "nuts_and_seeds",
+            "grocery:shelfLifeDays": 540,
+            "grocery:ingredients": ["Macadamia nuts", "Sea salt"],
+            "grocery:allergens": ["Tree nuts"],
+            "grocery:certifications": ["Kosher"],
+            "grocery:storageInstructions": "Store at room temperature"
+          }
+        }
+      ],
+      "beckn:orderValue": {
+        "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/draft/schema/core/v2/context.jsonld",
+        "@type": "schema:PriceSpecification",
+        "schema:priceCurrency": "USD",
+        "schema:price": 21.95,
+        "beckn:components": [
+          {
+            "@type": "beckn:PriceComponent",
+            "beckn:type": "UNIT",
+            "beckn:value": 21.00,
+            "beckn:currency": "USD",
+            "beckn:description": "Item price (2 × $10.50)"
+          },
+          {
+            "@type": "beckn:PriceComponent",
+            "beckn:type": "TAX",
+            "beckn:value": 0.95,
+            "beckn:currency": "USD",
+            "beckn:description": "Tax (4.5%)"
+          }
+        ]
+      },
+      "beckn:fulfillment": {
+        "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/draft/schema/core/v2/context.jsonld",
+        "@type": "beckn:Fulfillment",
+        "beckn:id": "fulfillment-airport-pickup",
+        "beckn:mode": "PICKUP",
+        "beckn:status": "CANCELLED"
+      },
+      "beckn:payment": {
+        "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/draft/schema/core/v2/context.jsonld",
+        "@type": "beckn:Payment",
+        "beckn:id": "payment-002",
+        "beckn:status": "REFUNDED",
+        "beckn:amount": {
+          "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/draft/schema/core/v2/context.jsonld",
+          "@type": "schema:PriceSpecification",
+          "schema:priceCurrency": "USD",
+          "schema:price": 21.95
+        },
+        "beckn:txnRef": "TXN-ITC-20250127-002",
+        "beckn:refundRef": "REFUND-ITC-20250127-002",
+        "beckn:refundedAt": "2025-01-27T10:20:02+10:00",
+        "beckn:beneficiary": "BAP"
+      }
+    }
+  }
+}

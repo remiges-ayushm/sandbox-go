@@ -1,0 +1,228 @@
+{
+  "context": {
+    "version": "2.0.0",
+    "action": "on_cancel",
+    "domain": "beckn.one:mobility:ride-hailing:1.0",
+    "timestamp": "2025-12-10T09:58:02+07:00",
+    "message_id": "msg-on-cancel-cab-001",
+    "transaction_id": "txn-cab-bangkok-001",
+    "bap_id": "travel-booking-app.example.com",
+    "bap_uri": "https://travel-booking-app.example.com",
+    "bpp_id": "bangkok-cab-service.com",
+    "bpp_uri": "https://bangkok-cab-service.com",
+    "ttl": "PT30S"
+  },
+  "message": {
+    "order": {
+      "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/draft/schema/core/v2/context.jsonld",
+      "@type": "beckn:Order",
+      "beckn:id": "order-cab-bangkok-001",
+      "beckn:orderStatus": "CANCELLED",
+      "beckn:seller": {
+        "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/draft/schema/core/v2/context.jsonld",
+        "@type": "beckn:Provider",
+        "beckn:id": "provider-bangkok-cab-service",
+        "beckn:descriptor": {
+          "@type": "beckn:Descriptor",
+          "schema:name": "Bangkok Cab Service",
+          "beckn:shortDesc": "Reliable cab service in Bangkok",
+          "schema:telephone": "+66 2 555 1234",
+          "schema:email": "support@bangkokcabs.com"
+        }
+      },
+      "beckn:buyer": {
+        "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/draft/schema/core/v2/context.jsonld",
+        "@type": "beckn:Buyer",
+        "schema:name": "Sarah Johnson",
+        "schema:email": "sarah.johnson@example.com",
+        "schema:telephone": "+1 555 123 4567"
+      },
+      "beckn:orderItems": [
+        {
+          "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/draft/schema/core/v2/context.jsonld",
+          "@type": "beckn:OrderItem",
+          "beckn:lineId": "line-001",
+          "beckn:orderedItem": "item-cab-sedan",
+          "beckn:acceptedOffer": {
+            "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/draft/schema/core/v2/context.jsonld",
+            "@type": "beckn:Offer",
+            "beckn:id": "offer-sedan-base",
+            "beckn:descriptor": {
+              "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/draft/schema/core/v2/context.jsonld",
+              "@type": "beckn:Descriptor",
+              "schema:name": "Sedan Cab - Airport to Hotel",
+              "beckn:shortDesc": "Standard sedan fare"
+            },
+            "beckn:price": {
+              "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/draft/schema/core/v2/context.jsonld",
+              "@type": "schema:PriceSpecification",
+              "schema:priceCurrency": "USD",
+              "schema:price": 18.00
+            }
+          },
+          "beckn:orderItemAttributes": {
+            "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/draft/schema/RideService/v1/context.jsonld",
+            "@type": "beckn:RideService",
+            "ride:vehicleType": "Sedan",
+            "ride:vehicleCategory": "Sedan",
+            "ride:maxPassengers": 4,
+            "ride:maxLuggage": 3,
+            "ride:estimatedDistance": 25,
+            "ride:distanceUnit": "KM",
+            "ride:estimatedDuration": "PT40M",
+            "ride:eta": "PT5M",
+            "ride:amenities": {
+              "airConditioning": true,
+              "wifi": true,
+              "charger": true,
+              "bottledWater": true
+            }
+          }
+        }
+      ],
+      "beckn:orderValue": {
+        "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/draft/schema/core/v2/context.jsonld",
+        "@type": "schema:PriceSpecification",
+        "schema:priceCurrency": "USD",
+        "schema:price": 0.00,
+        "beckn:components": [
+          {
+            "@type": "beckn:PriceComponent",
+            "beckn:type": "UNIT",
+            "beckn:value": 18.00,
+            "beckn:currency": "USD",
+            "beckn:description": "Base fare"
+          },
+          {
+            "@type": "beckn:PriceComponent",
+            "beckn:type": "TAX",
+            "beckn:value": 0.50,
+            "beckn:currency": "USD",
+            "beckn:description": "Service tax (2.78%)"
+          },
+          {
+            "@type": "beckn:PriceComponent",
+            "beckn:type": "DISCOUNT",
+            "beckn:value": -18.50,
+            "beckn:currency": "USD",
+            "beckn:description": "Cancellation within free window - no charge"
+          }
+        ]
+      },
+      "beckn:payment": {
+        "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/draft/schema/core/v2/context.jsonld",
+        "@type": "beckn:Payment",
+        "beckn:type": "POST_FULFILLMENT",
+        "beckn:status": "NOT_PAID",
+        "beckn:amount": {
+          "@type": "schema:PriceSpecification",
+          "schema:priceCurrency": "USD",
+          "schema:price": 0.00
+        },
+        "beckn:params": {
+          "currency": "USD",
+          "amount": "0.00"
+        }
+      },
+      "beckn:fulfillment": {
+        "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/draft/schema/core/v2/context.jsonld",
+        "@type": "beckn:Fulfillment",
+        "beckn:id": "fulfillment-ride-sedan",
+        "beckn:mode": "RESERVATION",
+        "beckn:status": "CANCELLED",
+        "beckn:deliveryAttributes": {
+          "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/draft/schema/RideService/v1/context.jsonld",
+          "@type": "beckn:RideDelivery",
+          "ride:type": "ride",
+          "ride:state": "CANCELLED",
+          "ride:agent": {
+          "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/draft/schema/core/v2/context.jsonld",
+          "@type": "beckn:Agent",
+          "beckn:id": "driver-somchai-001",
+          "schema:name": "Somchai K.",
+          "schema:telephone": "+66 987 654 321"
+        },
+          "ride:vehicle": {
+            "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/draft/schema/core/v2/context.jsonld",
+            "@type": "beckn:Vehicle",
+            "beckn:id": "vehicle-bkk-1234",
+            "beckn:descriptor": {
+              "@type": "beckn:Descriptor",
+              "schema:name": "Toyota Camry",
+              "beckn:code": "BKK-1234"
+            },
+            "beckn:category": "Sedan",
+            "beckn:color": "Black",
+            "beckn:registrationNumber": "BKK-1234"
+          },
+          "ride:start": {
+          "@type": "beckn:FulfillmentPoint",
+          "beckn:location": {
+            "@type": "beckn:Location",
+            "beckn:id": "pickup-airport",
+            "beckn:descriptor": {
+              "@type": "beckn:Descriptor",
+              "schema:name": "Suvarnabhumi Airport - Arrivals Hall"
+            },
+            "beckn:address": {
+              "@type": "schema:PostalAddress",
+              "schema:streetAddress": "999 Moo 1, Nong Prue",
+              "schema:addressLocality": "Bang Phli",
+              "schema:addressRegion": "Samut Prakan",
+              "schema:postalCode": "10540",
+              "schema:addressCountry": "TH"
+            },
+            "beckn:geo": {
+              "type": "Point",
+              "coordinates": [100.7501, 13.6900]
+            }
+          },
+          "beckn:time": {
+            "@type": "beckn:TimePeriod",
+            "schema:startDate": "2025-12-10T10:00:00+07:00"
+          },
+          "beckn:contact": {
+            "@type": "beckn:Contact",
+            "schema:name": "Sarah Johnson",
+            "schema:telephone": "+1 555 123 4567",
+            "schema:email": "sarah.johnson@example.com"
+          }
+          },
+          "ride:end": {
+          "@type": "beckn:FulfillmentPoint",
+          "beckn:location": {
+            "@type": "beckn:Location",
+            "beckn:id": "dropoff-hotel",
+            "beckn:descriptor": {
+              "@type": "beckn:Descriptor",
+              "schema:name": "Grand Siam Hotel"
+            },
+            "beckn:address": {
+              "@type": "schema:PostalAddress",
+              "schema:streetAddress": "123 Sukhumvit Road",
+              "schema:addressLocality": "Khlong Toei",
+              "schema:addressRegion": "Bangkok",
+              "schema:postalCode": "10110",
+              "schema:addressCountry": "TH"
+            },
+            "beckn:geo": {
+              "type": "Point",
+              "coordinates": [100.5698, 13.7563]
+            }
+          }
+        }
+        }
+      },
+      "beckn:orderAttributes": {
+        "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/draft/schema/RideBooking/v1/context.jsonld",
+        "@type": "beckn:RideBooking",
+        "bookingId": "RIDE-BKK-10251000",
+        "bookingReference": "BCS-20251210-001",
+        "rideStatus": "CANCELLED",
+        "cancellationTime": "2025-12-10T09:58:00+07:00",
+        "cancellationReason": "Customer cancelled within free cancellation window",
+        "cancellationFee": 0.00
+      }
+    }
+  }
+}
