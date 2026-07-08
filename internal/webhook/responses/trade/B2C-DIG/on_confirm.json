@@ -24,7 +24,7 @@
     "contract": {
       "commitments": [
         {
-          "id": "COMMIT-L01",
+          "id": "jsonata:message.contract.commitments.id",
           "status": {
             "descriptor": {
               "code": "ACTIVE"
@@ -32,7 +32,7 @@
           },
           "resources": [
             {
-              "id": "res-b2c-dig-001",
+              "id": "jsonata:message.contract.commitments.resources.id",
               "descriptor": {
                 "name": "Sample Item (B2C-DIG)",
                 "shortDesc": "Sample product for B2C-DIG pattern"
@@ -40,10 +40,7 @@
               "resourceAttributes": {
                 "@context": "https://schema.ion.id/extensions/trade/resource/v1/context.jsonld",
                 "@type": "ion:IONTradeResource",
-                "quantity": {
-                  "value": 1,
-                  "unit": "piece"
-                },
+                "quantity": "jsonata:message.contract.commitments.resources.resourceAttributes.quantity",
                 "resourceStructure": "PLAIN",
                 "resourceTangibility": "DIGITAL_VOUCHER",
                 "logisticsServiceType": "HYPERLOCAL",
@@ -75,10 +72,8 @@
             }
           ],
           "offer": {
-            "id": "OFFER-B2C-DIG-001",
-            "resourceIds": [
-              "res-b2c-dig-001"
-            ],
+            "id": "jsonata:message.contract.commitments.offer.id",
+            "resourceIds": "jsonata:message.contract.commitments.offer.resourceIds",
             "descriptor": {
               "name": "Offer for B2C-DIG"
             },
@@ -108,31 +103,25 @@
           "commitmentAttributes": {
             "@context": "https://schema.ion.id/extensions/trade/commitment/v1/context.jsonld",
             "@type": "ion:IONTradeCommitment",
-            "lineId": "L01",
-            "resourceId": "res-b2c-dig-001",
-            "offerId": "OFFER-B2C-DIG-001",
-            "quantity": {
-              "count": 1
-            }
+            "lineId": "jsonata:message.contract.commitments.commitmentAttributes.lineId",
+            "resourceId": "jsonata:message.contract.commitments.commitmentAttributes.resourceId",
+            "offerId": "jsonata:message.contract.commitments.commitmentAttributes.offerId",
+            "quantity": "jsonata:message.contract.commitments.commitmentAttributes.quantity"
           }
         }
       ],
       "performance": [
         {
-          "id": "PERF-001",
-          "commitmentIds": [
-            "COMMIT-L01"
-          ],
+          "id": "jsonata:message.contract.performance.id",
+          "commitmentIds": "jsonata:message.contract.performance.commitmentIds",
           "status": {
             "code": "DRAFT"
           },
           "performanceAttributes": {
             "@context": "https://schema.ion.id/extensions/trade/performance/v1/context.jsonld",
             "@type": "ion:IONTradePerformance",
-            "performanceMode": "DELIVERY",
-            "supportedPerformanceModes": [
-              "DELIVERY"
-            ],
+            "performanceMode": "jsonata:message.contract.performance.performanceAttributes.performanceMode",
+            "supportedPerformanceModes": "jsonata:message.contract.performance.performanceAttributes.supportedPerformanceModes",
             "sla": {
               "min": "PT1M",
               "max": "PT5M",

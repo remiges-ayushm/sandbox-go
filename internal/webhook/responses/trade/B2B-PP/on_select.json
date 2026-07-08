@@ -24,52 +24,16 @@
     "contract": {
       "commitments": [
         {
-          "id": "COMMIT-L01",
+          "id": "jsonata:message.contract.commitments.id",
           "status": {
             "descriptor": {
               "code": "DRAFT"
             }
           },
-          "resources": [
-            {
-              "id": "res-b2b-pp-001",
-              "descriptor": {
-                "name": "Sample Item (B2B-PP)",
-                "shortDesc": "Sample product for B2B-PP pattern"
-              },
-              "resourceAttributes": {
-                "@context": "https://schema.ion.id/extensions/trade/resource/v1/context.jsonld",
-                "@type": "ion:IONTradeResource",
-                "quantity": {
-                  "value": 100,
-                  "unit": "carton"
-                },
-                "resourceStructure": "PLAIN",
-                "resourceTangibility": "PHYSICAL",
-                "logisticsServiceType": "DOMESTIC_SURFACE",
-                "ageRestricted": false,
-                "countryOfOrigin": "IDN",
-                "images": [
-                  "https://cdn.example.ion.id/products/item-primary.jpg"
-                ],
-                "availability": {
-                  "status": "IN_STOCK",
-                  "maxOrderQty": 50,
-                  "backorderAllowed": false,
-                  "substitutionAllowed": false
-                },
-                "identity": {
-                  "brand": "WholesaleCo",
-                  "sku": "WS-CARTON-001"
-                }
-              }
-            }
-          ],
+          "resources": "jsonata:message.contract.commitments.resources",
           "offer": {
-            "id": "OFFER-B2B-PP-001",
-            "resourceIds": [
-              "res-b2b-pp-001"
-            ],
+            "id": "jsonata:message.contract.commitments.offer.id",
+            "resourceIds": "jsonata:message.contract.commitments.offer.resourceIds",
             "descriptor": {
               "name": "Offer for B2B-PP"
             },
@@ -99,34 +63,25 @@
           "commitmentAttributes": {
             "@context": "https://schema.ion.id/extensions/trade/commitment/v1/context.jsonld",
             "@type": "ion:IONTradeCommitment",
-            "lineId": "L01",
-            "resourceId": "res-b2b-pp-001",
-            "offerId": "OFFER-B2B-PP-001",
-            "quantity": {
-              "measure": {
-                "unit": "KILOGRAM",
-                "value": 100
-              }
-            }
+            "lineId": "jsonata:message.contract.commitments.commitmentAttributes.lineId",
+            "resourceId": "jsonata:message.contract.commitments.commitmentAttributes.resourceId",
+            "offerId": "jsonata:message.contract.commitments.commitmentAttributes.offerId",
+            "quantity": "jsonata:message.contract.commitments.commitmentAttributes.quantity"
           }
         }
       ],
       "performance": [
         {
-          "id": "PERF-001",
-          "commitmentIds": [
-            "COMMIT-L01"
-          ],
+          "id": "jsonata:message.contract.performance.id",
+          "commitmentIds": "jsonata:message.contract.performance.commitmentIds",
           "status": {
             "code": "DRAFT"
           },
           "performanceAttributes": {
             "@context": "https://schema.ion.id/extensions/trade/performance/v1/context.jsonld",
             "@type": "ion:IONTradePerformance",
-            "performanceMode": "DELIVERY",
-            "supportedPerformanceModes": [
-              "DELIVERY"
-            ],
+            "performanceMode": "jsonata:message.contract.performance.performanceAttributes.performanceMode",
+            "supportedPerformanceModes": "jsonata:message.contract.performance.performanceAttributes.supportedPerformanceModes",
             "sla": {
               "min": "P2D",
               "max": "P5D",

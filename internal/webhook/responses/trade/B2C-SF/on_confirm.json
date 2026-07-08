@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "description": "B2C Storefront \u2014 on_confirm. Order locked as ORD-B2C-20260519-0042. contract=ACTIVE, commitment=ACTIVE, consideration=CONSID-B2C-0042 transitions to ACTIVE, settlement=COMMITTED. Performance ID stays PERF-001 \u2014 consistent with all previous steps. OTP 738291 placed in performanceAttributes.deliveryOtp per storefront/v1 conditional field spec. Warehouse notified to begin pick-and-pack.",
+    "description": "B2C Storefront — on_confirm. Order locked as ORD-B2C-20260519-0042. contract=ACTIVE, commitment=ACTIVE, consideration=CONSID-B2C-0042 transitions to ACTIVE, settlement=COMMITTED. Performance ID stays PERF-001 — consistent with all previous steps. OTP 738291 placed in performanceAttributes.deliveryOtp per storefront/v1 conditional field spec. Warehouse notified to begin pick-and-pack.",
     "pattern": "B2C-SF",
     "step": "on_confirm",
     "sent_by": "BPP",
@@ -66,34 +66,29 @@
       ],
       "commitments": [
         {
-          "id": "L01",
+          "id": "jsonata:message.contract.commitments.id",
           "status": {
             "descriptor": {
               "code": "ACTIVE"
             }
           },
           "offer": {
-            "id": "OFFER-IPHONE17-B2C-001",
+            "id": "jsonata:message.contract.commitments.offer.id",
             "provider": {
               "id": "PROV-ISTORE-JKT-001",
               "descriptor": {
-                "name": "iStore Indonesia \ufffd Official Apple Reseller"
+                "name": "iStore Indonesia � Official Apple Reseller"
               }
             },
-            "resourceIds": [
-              "IPHONE17-BASE"
-            ]
+            "resourceIds": "jsonata:message.contract.commitments.offer.resourceIds"
           },
           "resources": [
             {
-              "id": "IPHONE17-BASE",
+              "id": "jsonata:message.contract.commitments.resources.id",
               "resourceAttributes": {
                 "@context": "https://schema.ion.id/extensions/trade/resource/v1/context.jsonld",
                 "@type": "ion:IONTradeResource",
-                "quantity": {
-                  "value": 1,
-                  "unit": "piece"
-                },
+                "quantity": "jsonata:message.contract.commitments.resources.resourceAttributes.quantity",
                 "resourceStructure": "VARIANT",
                 "resourceTangibility": "PHYSICAL",
                 "logisticsServiceType": "DOMESTIC_SURFACE",
@@ -194,7 +189,7 @@
                   "duration": "P1Y",
                   "type": "MANUFACTURER",
                   "terms": "Garansi resmi Apple Indonesia 1 tahun untuk kerusakan komponen dan manufacturing defect. Tidak mencakup kerusakan fisik, air, dan modifikasi tidak resmi.",
-                  "serviceCenter": "Apple Authorised Service Provider \u2014 0800-100-9701"
+                  "serviceCenter": "Apple Authorised Service Provider — 0800-100-9701"
                 },
                 "itemRating": 4.9,
                 "variantMatrix": {
@@ -297,9 +292,7 @@
                 },
                 "isDefaultVariant": false
               },
-              "quantity": {
-                "count": 1
-              },
+              "quantity": "jsonata:message.contract.commitments.resources.quantity",
               "descriptor": {
                 "longDesc": "CPU: Apple A19 Bionic. GPU: Apple GPU 6-core. RAM: 8 GB. Storage: 128 GB. Screen: 6.1\". Main camera: 48MP. Front camera: 12MP. Battery: 3561mAh. OS: iOS 19."
               }
@@ -308,7 +301,7 @@
           "commitmentAttributes": {
             "@context": "https://schema.ion.id/extensions/trade/commitment/v1/context.jsonld",
             "@type": "ion:IONTradeCommitment",
-            "lineId": "L01",
+            "lineId": "jsonata:message.contract.commitments.commitmentAttributes.lineId",
             "variantSelections": [
               {
                 "axisId": "colour",
@@ -319,16 +312,14 @@
                 "valueId": "256gb"
               }
             ],
-            "resolvedVariantLabel": "iPhone 17 \u2014 256 GB \u2014 Natural Titanium",
+            "resolvedVariantLabel": "iPhone 17 — 256 GB — Natural Titanium",
             "price": {
               "value": "20499000",
               "currency": "IDR"
             },
-            "resourceId": "IPHONE17-BASE",
-            "offerId": "OFFER-IPHONE17-B2C-001",
-            "quantity": {
-              "count": 1
-            }
+            "resourceId": "jsonata:message.contract.commitments.commitmentAttributes.resourceId",
+            "offerId": "jsonata:message.contract.commitments.commitmentAttributes.offerId",
+            "quantity": "jsonata:message.contract.commitments.commitmentAttributes.quantity"
           }
         }
       ],
@@ -350,7 +341,7 @@
               {
                 "lineId": "L01-ITEM",
                 "breakupLineType": "ITEM",
-                "title": "iPhone 17 \u2014 256 GB \u2014 Natural Titanium",
+                "title": "iPhone 17 — 256 GB — Natural Titanium",
                 "commitmentId": "L01",
                 "resourceId": "IPHONE17-BASE",
                 "quantity": 1,
@@ -361,7 +352,7 @@
               {
                 "lineId": "DEL-001",
                 "breakupLineType": "DELIVERY",
-                "title": "Ongkos Kirim \u2014 Same Day (Jakarta Selatan)",
+                "title": "Ongkos Kirim — Same Day (Jakarta Selatan)",
                 "amount": 35000,
                 "currency": "IDR"
               },
@@ -388,10 +379,8 @@
       ],
       "performance": [
         {
-          "id": "PERF-001",
-          "commitmentIds": [
-            "L01"
-          ],
+          "id": "jsonata:message.contract.performance.id",
+          "commitmentIds": "jsonata:message.contract.performance.commitmentIds",
           "status": {
             "code": "PLANNED",
             "name": "Planned"
@@ -399,7 +388,7 @@
           "performanceAttributes": {
             "@context": "https://schema.ion.id/extensions/trade/performance/v1/context.jsonld",
             "@type": "ion:IONTradePerformance",
-            "performanceMode": "DELIVERY",
+            "performanceMode": "jsonata:message.contract.performance.performanceAttributes.performanceMode",
             "proofOfDeliveryType": "OTP",
             "deliveryOtp": "738291",
             "stops": [
@@ -426,9 +415,7 @@
             "estimatedDeliveryTime": "2026-05-19T16:00:00.000+07:00",
             "fulfillmentType": "SAME_DAY",
             "shippingProviderType": "THIRD_PARTY_ON_NETWORK",
-            "supportedPerformanceModes": [
-              "DELIVERY"
-            ]
+            "supportedPerformanceModes": "jsonata:message.contract.performance.performanceAttributes.supportedPerformanceModes"
           }
         }
       ],

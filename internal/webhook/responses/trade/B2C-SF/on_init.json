@@ -91,7 +91,7 @@
       ],
       "performance": [
         {
-          "id": "PERF-001",
+          "id": "jsonata:message.contract.performance.id",
           "status": {
             "code": "PLANNED",
             "name": "Planned"
@@ -99,7 +99,7 @@
           "performanceAttributes": {
             "@context": "https://schema.ion.id/extensions/trade/performance/v1/context.jsonld",
             "@type": "ion:IONTradePerformance",
-            "performanceMode": "DELIVERY",
+            "performanceMode": "jsonata:message.contract.performance.performanceAttributes.performanceMode",
             "sla": {
               "min": "PT2H",
               "max": "PT6H",
@@ -122,9 +122,7 @@
                 }
               }
             ],
-            "supportedPerformanceModes": [
-              "DELIVERY"
-            ]
+            "supportedPerformanceModes": "jsonata:message.contract.performance.performanceAttributes.supportedPerformanceModes"
           }
         }
       ],
@@ -154,31 +152,24 @@
       ],
       "commitments": [
         {
-          "id": "L01",
+          "id": "jsonata:message.contract.commitments.id",
           "status": {
             "descriptor": {
               "code": "DRAFT"
             }
           },
           "offer": {
-            "id": "OFFER-IPHONE17-B2C-001",
-            "resourceIds": [
-              "IPHONE17-BASE"
-            ]
+            "id": "jsonata:message.contract.commitments.offer.id",
+            "resourceIds": "jsonata:message.contract.commitments.offer.resourceIds"
           },
           "resources": [
             {
-              "id": "IPHONE17-BASE",
-              "quantity": {
-                "count": 1
-              },
+              "id": "jsonata:message.contract.commitments.resources.id",
+              "quantity": "jsonata:message.contract.commitments.resources.quantity",
               "resourceAttributes": {
                 "@context": "https://schema.ion.id/extensions/trade/resource/v1/context.jsonld",
                 "@type": "ion:IONTradeResource",
-                "quantity": {
-                  "value": 1,
-                  "unit": "piece"
-                },
+                "quantity": "jsonata:message.contract.commitments.resources.resourceAttributes.quantity",
                 "resourceStructure": "VARIANT",
                 "resourceTangibility": "PHYSICAL",
                 "logisticsServiceType": "DOMESTIC_SURFACE",
