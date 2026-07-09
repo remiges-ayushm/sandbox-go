@@ -3,7 +3,7 @@ package fixtures
 import (
 	"encoding/json"
 	"fmt"
-	"log"
+	"log/slog"
 	"net/http"
 	"os"
 	"path/filepath"
@@ -366,17 +366,17 @@ func ReadRequestResponse(requestBody map[string]interface{}, action string, pers
 	candidates := buildStructuredCandidates(structuredBasePath, route, action, persona)
 
 	if route.sector == "" {
-		log.Printf("no sector signal (header/_meta/context) found for action %q; falling back to legacy domain lookup — this may return an unrelated fixture", action)
+		slog.Warn("no sector signal found for action, falling back to legacy domain lookup", "action", action)
 	}
 
 	for _, candidate := range candidates {
 		if _, err := os.Stat(candidate); err == nil {
-			log.Printf("Using response fixture: %s", candidate)
+			slog.Info("using response fixture", "path", candidate)
 			payload, err := readJSONFile(candidate)
 			if err == nil {
 				return stripInternalMeta(payload)
 			}
-			log.Printf("failed to read fixture %s: %v", candidate, err)
+			slog.Error("failed to read fixture", "path", candidate, "error", err)
 		}
 	}
 
@@ -388,7 +388,7 @@ func ReadRequestResponse(requestBody map[string]interface{}, action string, pers
 func ReadDomainResponse(domain string, action string, persona string) interface{} {
 	normalizedDomain := NormalizeDomain(domain)
 	if normalizedDomain == "" {
-		log.Println("No response domain found, returning empty object")
+		slog.Warn("no response domain found, returning empty object")
 		return map[string]interface{}{}
 	}
 
@@ -399,7 +399,7 @@ func ReadDomainResponse(domain string, action string, persona string) interface{
 			return payload
 		}
 		if !os.IsNotExist(err) {
-			log.Printf("failed to read fixture %s: %v", personaPath, err)
+			slog.Error("failed to read fixture", "path", personaPath, "error", err)
 			return map[string]interface{}{}
 		}
 		// fall through to default path if persona file not found
@@ -409,10 +409,10 @@ func ReadDomainResponse(domain string, action string, persona string) interface{
 	payload, err := readJSONFile(targetPath)
 	if err != nil {
 		if os.IsNotExist(err) {
-			log.Printf("File not found: %s, returning empty object", targetPath)
+			slog.Warn("fixture file not found, returning empty object", "path", targetPath)
 			return map[string]interface{}{}
 		}
-		log.Printf("failed to read fixture %s: %v", targetPath, err)
+		slog.Error("failed to read fixture", "path", targetPath, "error", err)
 		return map[string]interface{}{}
 	}
 	return payload

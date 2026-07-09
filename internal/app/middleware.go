@@ -1,8 +1,16 @@
 package app
 
 import (
+	"bytes"
+	"encoding/json"
+	"fmt"
+	"io"
+	"log/slog"
 	"net/http"
+	"runtime/debug"
+	"time"
 
+	"github.com/beckn/sandbox-go/internal/logging"
 	"github.com/gin-gonic/gin"
 )
 
@@ -55,9 +63,99 @@ func bodyLimitMiddleware(limitBytes int64) gin.HandlerFunc {
 	}
 }
 
-// recoveryMiddleware mirrors the Express global error fallback in src/app.ts.
+// recoveryMiddleware mirrors the Express global error fallback in src/app.ts, and logs
+// the recovered panic + stack trace before responding.
 func recoveryMiddleware() gin.HandlerFunc {
 	return gin.CustomRecovery(func(c *gin.Context, recovered interface{}) {
+		logging.FromContext(c).Error("panic recovered",
+			"error", fmt.Sprintf("%v", recovered),
+			"stack", string(debug.Stack()),
+		)
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "internal_error"})
 	})
+}
+
+// requestIDMiddleware reuses an inbound X-Request-Id header if present, otherwise
+// generates one, and stashes a request-scoped logger on the gin context so every log
+// line for this request can be correlated together.
+func requestIDMiddleware() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		id := c.GetHeader(logging.RequestIDHeader)
+		if id == "" {
+			id = logging.NewRequestID()
+		}
+		logger := slog.Default().With("request_id", id)
+		logging.SetRequestLogger(c, id, logger)
+		c.Header(logging.RequestIDHeader, id)
+		c.Next()
+	}
+}
+
+// bodyLogWriter wraps gin's ResponseWriter to capture the response body for logging
+// without affecting what's actually written to the client.
+type bodyLogWriter struct {
+	gin.ResponseWriter
+	body *bytes.Buffer
+}
+
+func (w *bodyLogWriter) Write(b []byte) (int, error) {
+	w.body.Write(b)
+	return w.ResponseWriter.Write(b)
+}
+
+// loggableBody renders a captured body for structured logging: valid JSON is embedded
+// as raw JSON (readable in log output), anything else falls back to a plain string.
+func loggableBody(b []byte) any {
+	if len(b) == 0 {
+		return nil
+	}
+	if json.Valid(b) {
+		return json.RawMessage(b)
+	}
+	return string(b)
+}
+
+// loggingMiddleware logs every inbound request and its outgoing response, including
+// full bodies, method/path, status code, and latency, correlated by request_id.
+func loggingMiddleware() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		start := time.Now()
+		logger := logging.FromContext(c)
+
+		var reqBody []byte
+		if c.Request.Body != nil {
+			reqBody, _ = io.ReadAll(c.Request.Body)
+			c.Request.Body = io.NopCloser(bytes.NewReader(reqBody))
+		}
+
+		logger.Info("incoming request",
+			"method", c.Request.Method,
+			"path", c.Request.URL.Path,
+			"query", c.Request.URL.RawQuery,
+			"client_ip", c.ClientIP(),
+			"body", loggableBody(reqBody),
+		)
+
+		blw := &bodyLogWriter{ResponseWriter: c.Writer, body: &bytes.Buffer{}}
+		c.Writer = blw
+
+		c.Next()
+
+		fields := []any{
+			"method", c.Request.Method,
+			"path", c.Request.URL.Path,
+			"status", c.Writer.Status(),
+			"latency_ms", time.Since(start).Milliseconds(),
+			"body", loggableBody(blw.body.Bytes()),
+		}
+
+		switch {
+		case c.Writer.Status() >= http.StatusInternalServerError:
+			logger.Error("outgoing response", fields...)
+		case c.Writer.Status() >= http.StatusBadRequest:
+			logger.Warn("outgoing response", fields...)
+		default:
+			logger.Info("outgoing response", fields...)
+		}
+	}
 }

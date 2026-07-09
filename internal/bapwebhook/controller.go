@@ -1,10 +1,9 @@
 package bapwebhook
 
 import (
-	"encoding/json"
-	"log"
 	"net/http"
 
+	"github.com/beckn/sandbox-go/internal/logging"
 	"github.com/gin-gonic/gin"
 )
 
@@ -27,24 +26,27 @@ func buildAck(context map[string]interface{}) gin.H {
 	return gin.H{"message": gin.H{"status": "ACK", "messageId": messageID(context)}}
 }
 
-func handle(c *gin.Context) {
-	var b body
-	_ = c.ShouldBindJSON(&b)
+func handle(action string, c *gin.Context) {
+	logger := logging.FromContext(c)
 
-	logged, _ := json.MarshalIndent(gin.H{"message": b.Message, "context": b.Context}, "", "  ")
-	log.Println(string(logged))
+	var b body
+	if err := c.ShouldBindJSON(&b); err != nil {
+		logger.Warn("failed to bind request body as JSON", "action", action, "error", err)
+	}
+
+	logger.Info("received callback", "action", action, "message", b.Message, "context", b.Context)
 
 	c.JSON(http.StatusOK, buildAck(b.Context))
 }
 
-func OnDiscover(c *gin.Context) { handle(c) }
-func OnSelect(c *gin.Context)   { handle(c) }
-func OnInit(c *gin.Context)     { handle(c) }
-func OnConfirm(c *gin.Context)  { handle(c) }
-func OnStatus(c *gin.Context)   { handle(c) }
-func OnCancel(c *gin.Context)   { handle(c) }
-func OnUpdate(c *gin.Context)   { handle(c) }
-func OnRating(c *gin.Context)   { handle(c) }
-func OnRate(c *gin.Context)     { handle(c) }
-func OnSupport(c *gin.Context)  { handle(c) }
-func OnTrack(c *gin.Context)    { handle(c) }
+func OnDiscover(c *gin.Context) { handle("on_discover", c) }
+func OnSelect(c *gin.Context)   { handle("on_select", c) }
+func OnInit(c *gin.Context)     { handle("on_init", c) }
+func OnConfirm(c *gin.Context)  { handle("on_confirm", c) }
+func OnStatus(c *gin.Context)   { handle("on_status", c) }
+func OnCancel(c *gin.Context)   { handle("on_cancel", c) }
+func OnUpdate(c *gin.Context)   { handle("on_update", c) }
+func OnRating(c *gin.Context)   { handle("on_rating", c) }
+func OnRate(c *gin.Context)     { handle("on_rate", c) }
+func OnSupport(c *gin.Context)  { handle("on_support", c) }
+func OnTrack(c *gin.Context)    { handle("on_track", c) }

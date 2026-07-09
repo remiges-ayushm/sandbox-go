@@ -1,7 +1,7 @@
 package fixtures
 
 import (
-	"log"
+	"log/slog"
 	"strings"
 
 	jsonata "github.com/blues/jsonata-go"
@@ -13,13 +13,13 @@ func evaluateJsonataString(value string, requestBody interface{}) interface{} {
 	expression := strings.TrimPrefix(value, jsonataPrefix)
 	expr, err := jsonata.Compile(expression)
 	if err != nil {
-		log.Printf(`applyJsonata: failed to compile "%s": %v`, expression, err)
+		slog.Error("applyJsonata: failed to compile expression", "expression", expression, "error", err)
 		return value
 	}
 
 	result, err := expr.Eval(requestBody)
 	if err != nil {
-		log.Printf(`applyJsonata: failed to evaluate "%s": %v`, expression, err)
+		slog.Error("applyJsonata: failed to evaluate expression", "expression", expression, "error", err)
 		return value
 	}
 	if result == nil {

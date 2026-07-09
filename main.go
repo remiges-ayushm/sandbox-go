@@ -1,15 +1,17 @@
 package main
 
 import (
-	"log"
+	"log/slog"
 	"os"
 
 	"github.com/beckn/sandbox-go/internal/app"
+	"github.com/beckn/sandbox-go/internal/logging"
 	"github.com/joho/godotenv"
 )
 
 func main() {
 	_ = godotenv.Load()
+	logging.Init()
 
 	port := os.Getenv("PORT")
 	if port == "" {
@@ -17,8 +19,9 @@ func main() {
 	}
 
 	engine := app.New()
-	log.Printf("Server is running on port %s", port)
+	slog.Info("server starting", "port", port)
 	if err := engine.Run(":" + port); err != nil {
-		log.Fatal(err)
+		slog.Error("server exited", "error", err)
+		os.Exit(1)
 	}
 }

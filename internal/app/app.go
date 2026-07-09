@@ -14,6 +14,8 @@ const jsonBodyLimitBytes = 5 << 20 // 5mb
 func New() *gin.Engine {
 	engine := gin.New()
 
+	engine.Use(requestIDMiddleware())
+	engine.Use(loggingMiddleware())
 	engine.Use(recoveryMiddleware())
 	engine.Use(corsMiddleware())
 	engine.Use(helmetMiddleware())

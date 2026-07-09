@@ -4,7 +4,8 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"log"
+	"io"
+	"log/slog"
 	"net/http"
 	"net/url"
 	"os"
@@ -12,10 +13,11 @@ import (
 	"time"
 
 	"github.com/beckn/sandbox-go/internal/fixtures"
+	"github.com/beckn/sandbox-go/internal/logging"
 	"github.com/gin-gonic/gin"
 )
 
-var httpClient = &http.Client{}
+var httpClient = &http.Client{Timeout: 30 * time.Second}
 
 func getPersona() string {
 	return os.Getenv("PERSONA")
@@ -85,28 +87,50 @@ func mergeContext(template interface{}, context map[string]interface{}, action s
 	return result
 }
 
-func postJSON(url string, payload interface{}) error {
+func postJSON(logger *slog.Logger, requestID string, url string, payload interface{}) error {
 	body, err := json.Marshal(payload)
 	if err != nil {
+		logger.Error("failed to marshal outbound callback payload", "url", url, "error", err)
 		return err
 	}
 
 	req, err := http.NewRequest(http.MethodPost, url, bytes.NewReader(body))
 	if err != nil {
+		logger.Error("failed to build outbound callback request", "url", url, "error", err)
 		return err
 	}
 	req.Header.Set("Content-Type", "application/json")
+	if requestID != "" {
+		req.Header.Set(logging.RequestIDHeader, requestID)
+	}
+
+	logger.Info("outbound callback request", "method", http.MethodPost, "url", url, "body", json.RawMessage(body))
 
 	resp, err := httpClient.Do(req)
 	if err != nil {
+		logger.Error("outbound callback request failed", "url", url, "error", err)
 		return err
 	}
 	defer resp.Body.Close()
 
-	var respData interface{}
-	_ = json.NewDecoder(resp.Body).Decode(&respData)
-	log.Printf("callback response: %v", respData)
+	respBody, _ := io.ReadAll(resp.Body)
+	logFields := []any{"url", url, "status", resp.StatusCode, "body", loggableCallbackBody(respBody)}
+	if resp.StatusCode >= http.StatusBadRequest {
+		logger.Error("outbound callback response", logFields...)
+	} else {
+		logger.Info("outbound callback response", logFields...)
+	}
 	return nil
+}
+
+func loggableCallbackBody(b []byte) any {
+	if len(b) == 0 {
+		return nil
+	}
+	if json.Valid(b) {
+		return json.RawMessage(b)
+	}
+	return string(b)
 }
 
 // jsonataActions mirrors the TS controller: only these actions run their fixture template
@@ -129,15 +153,20 @@ func respond(action string) gin.HandlerFunc {
 	useJsonata := jsonataActions[action]
 
 	return func(c *gin.Context) {
+		logger := logging.FromContext(c)
+		requestID := logging.RequestID(c)
+
 		var body map[string]interface{}
-		_ = c.ShouldBindJSON(&body)
+		if err := c.ShouldBindJSON(&body); err != nil {
+			logger.Warn("failed to bind request body as JSON", "action", action, "error", err)
+		}
 		headers := c.Request.Header.Clone()
 		context, _ := body["context"].(map[string]interface{})
 
 		go func() {
 			defer func() {
 				if r := recover(); r != nil {
-					log.Printf("on_%s callback panic: %v", action, r)
+					logger.Error("on_"+action+" callback panic", "action", action, "panic", fmt.Sprintf("%v", r))
 				}
 			}()
 
@@ -149,13 +178,13 @@ func respond(action string) gin.HandlerFunc {
 
 			callbackURL, err := getCallbackURL(context, action)
 			if err != nil {
-				log.Printf("On %s: failed to resolve callback URL: %v", label, err)
+				logger.Error("failed to resolve callback URL", "action", label, "error", err)
 				return
 			}
-			log.Printf("Triggering On %s response to: %s", label, callbackURL)
+			logger.Info("triggering callback", "action", label, "callback_url", callbackURL)
 
-			if err := postJSON(callbackURL, responsePayload); err != nil {
-				log.Println(err)
+			if err := postJSON(logger, requestID, callbackURL, responsePayload); err != nil {
+				logger.Error("callback delivery failed", "action", label, "callback_url", callbackURL, "error", err)
 			}
 		}()
 
@@ -169,18 +198,23 @@ func triggerRespond(action string) gin.HandlerFunc {
 	label := strings.ToUpper(action[:1]) + action[1:]
 
 	return func(c *gin.Context) {
+		logger := logging.FromContext(c)
+		requestID := logging.RequestID(c)
+
 		var body map[string]interface{}
-		_ = c.ShouldBindJSON(&body)
+		if err := c.ShouldBindJSON(&body); err != nil {
+			logger.Warn("failed to bind request body as JSON", "action", action, "error", err)
+		}
 		context, _ := body["context"].(map[string]interface{})
 		message := body["message"]
 
 		callbackURL, err := getCallbackURL(context, action)
 		if err != nil {
-			log.Printf("On %s: failed to resolve callback URL: %v", label, err)
+			logger.Error("failed to resolve callback URL", "action", label, "error", err)
 		} else {
-			log.Printf("Triggering On %s response to: %s", label, callbackURL)
-			if err := postJSON(callbackURL, gin.H{"context": context, "message": message}); err != nil {
-				log.Println(err)
+			logger.Info("triggering callback", "action", label, "callback_url", callbackURL)
+			if err := postJSON(logger, requestID, callbackURL, gin.H{"context": context, "message": message}); err != nil {
+				logger.Error("callback delivery failed", "action", label, "callback_url", callbackURL, "error", err)
 			}
 		}
 
