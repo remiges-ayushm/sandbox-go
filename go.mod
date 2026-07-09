@@ -3,9 +3,9 @@ module github.com/beckn/sandbox-go
 go 1.26.1
 
 require (
-	github.com/blues/jsonata-go v1.5.4
 	github.com/gin-gonic/gin v1.12.0
 	github.com/joho/godotenv v1.5.1
+	github.com/jsonata-go/jsonata v0.0.0-20250709164031-599f35f32e5f
 )
 
 require (
