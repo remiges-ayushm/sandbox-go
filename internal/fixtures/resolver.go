@@ -9,10 +9,12 @@ import (
 	"path/filepath"
 	"regexp"
 	"strings"
+	"time"
 )
 
 var legacyResponsesBasePath = "internal/webhook/jsons"
-var defaultStructuredResponsesBasePath = "internal/webhook/responses"
+
+var fixtureHTTPClient = &http.Client{Timeout: 10 * time.Second}
 
 var knownSectors = []string{
 	"trade", "logistics", "mobility", "hospitality", "finance",
@@ -64,15 +66,8 @@ type responseRoute struct {
 	crc     string
 }
 
-func getStructuredResponsesBasePath() string {
-	if base := os.Getenv("RESPONSE_FIXTURES_BASE_PATH"); base != "" {
-		abs, err := filepath.Abs(base)
-		if err == nil {
-			return abs
-		}
-		return base
-	}
-	return defaultStructuredResponsesBasePath
+func getStructuredResponsesBaseURL() string {
+	return strings.TrimSpace(os.Getenv("RESPONSE_FIXTURES_BASE_URL"))
 }
 
 // NormalizeDomain replaces colons with dots for Windows-compatible dir names, then strips
@@ -278,24 +273,34 @@ func patternVariants(pattern string) []string {
 	return unique([]string{pattern, strings.ToUpper(pattern)})
 }
 
-func pushCandidate(candidates []string, basePath string, segments []string) []string {
+func pushCandidate(candidates [][]string, segments []string) [][]string {
 	for _, segment := range segments {
 		if safeSegment(segment, false) == "" {
 			return candidates
 		}
 	}
-
-	targetPath := filepath.Join(append([]string{basePath}, segments...)...)
-	relPath, err := filepath.Rel(basePath, targetPath)
-	if err != nil || strings.HasPrefix(relPath, "..") || filepath.IsAbs(relPath) {
-		return candidates
-	}
-
-	return append(candidates, targetPath)
+	return append(candidates, segments)
 }
 
-func buildStructuredCandidates(basePath string, route responseRoute, action string, persona string) []string {
-	var candidates []string
+func candidateKey(segments []string) string {
+	return strings.Join(segments, "/")
+}
+
+func uniqueCandidates(values [][]string) [][]string {
+	seen := make(map[string]bool, len(values))
+	result := make([][]string, 0, len(values))
+	for _, v := range values {
+		key := candidateKey(v)
+		if !seen[key] {
+			seen[key] = true
+			result = append(result, v)
+		}
+	}
+	return result
+}
+
+func buildStructuredCandidates(route responseRoute, action string, persona string) [][]string {
+	var candidates [][]string
 	fileName := fmt.Sprintf("%s.json", action)
 	sector := route.sector
 	crc := route.crc
@@ -307,27 +312,52 @@ func buildStructuredCandidates(basePath string, route responseRoute, action stri
 
 	for _, pattern := range patternVariants(route.pattern) {
 		if crc != "" && safePersona != "" {
-			candidates = pushCandidate(candidates, basePath, []string{sector, pattern, crc, safePersona, fileName})
+			candidates = pushCandidate(candidates, []string{sector, pattern, crc, safePersona, fileName})
 		}
 		if safePersona != "" {
-			candidates = pushCandidate(candidates, basePath, []string{sector, pattern, safePersona, fileName})
+			candidates = pushCandidate(candidates, []string{sector, pattern, safePersona, fileName})
 		}
 	}
 
 	if safePersona != "" {
-		candidates = pushCandidate(candidates, basePath, []string{sector, safePersona, fileName})
+		candidates = pushCandidate(candidates, []string{sector, safePersona, fileName})
 	}
 
 	for _, pattern := range patternVariants(route.pattern) {
 		if crc != "" {
-			candidates = pushCandidate(candidates, basePath, []string{sector, pattern, crc, fileName})
+			candidates = pushCandidate(candidates, []string{sector, pattern, crc, fileName})
 		}
-		candidates = pushCandidate(candidates, basePath, []string{sector, pattern, fileName})
+		candidates = pushCandidate(candidates, []string{sector, pattern, fileName})
 	}
 
-	candidates = pushCandidate(candidates, basePath, []string{sector, fileName})
+	candidates = pushCandidate(candidates, []string{sector, fileName})
 
-	return unique(candidates)
+	return uniqueCandidates(candidates)
+}
+
+func buildFixtureURL(baseURL string, segments []string) string {
+	return strings.TrimRight(baseURL, "/") + "/" + strings.Join(segments, "/")
+}
+
+func fetchRemoteFixture(fullURL string) (interface{}, bool, error) {
+	resp, err := fixtureHTTPClient.Get(fullURL)
+	if err != nil {
+		return nil, false, err
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode == http.StatusNotFound {
+		return nil, false, nil
+	}
+	if resp.StatusCode != http.StatusOK {
+		return nil, false, fmt.Errorf("unexpected status %d fetching %s", resp.StatusCode, fullURL)
+	}
+
+	var result interface{}
+	if err := json.NewDecoder(resp.Body).Decode(&result); err != nil {
+		return nil, false, err
+	}
+	return result, true, nil
 }
 
 func readJSONFile(targetPath string) (interface{}, error) {
@@ -361,22 +391,28 @@ func stripInternalMeta(payload interface{}) interface{} {
 // trying structured candidates derived from headers/_meta/context, then falling back to the
 // legacy domain-tree lookup.
 func ReadRequestResponse(requestBody map[string]interface{}, action string, persona string, headers http.Header) interface{} {
-	structuredBasePath := getStructuredResponsesBasePath()
+	baseURL := getStructuredResponsesBaseURL()
 	route := resolveResponseRoute(requestBody, headers)
-	candidates := buildStructuredCandidates(structuredBasePath, route, action, persona)
+	candidates := buildStructuredCandidates(route, action, persona)
 
 	if route.sector == "" {
 		slog.Warn("no sector signal found for action, falling back to legacy domain lookup", "action", action)
 	}
 
-	for _, candidate := range candidates {
-		if _, err := os.Stat(candidate); err == nil {
-			slog.Info("using response fixture", "path", candidate)
-			payload, err := readJSONFile(candidate)
-			if err == nil {
+	if baseURL == "" {
+		slog.Warn("RESPONSE_FIXTURES_BASE_URL not set; skipping structured fixture lookup")
+	} else {
+		for _, segments := range candidates {
+			fullURL := buildFixtureURL(baseURL, segments)
+			payload, found, err := fetchRemoteFixture(fullURL)
+			if err != nil {
+				slog.Error("failed to fetch remote fixture", "url", fullURL, "error", err)
+				continue
+			}
+			if found {
+				slog.Info("using remote response fixture", "url", fullURL)
 				return stripInternalMeta(payload)
 			}
-			slog.Error("failed to read fixture", "path", candidate, "error", err)
 		}
 	}
 
