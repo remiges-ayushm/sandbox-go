@@ -1,0 +1,66 @@
+# Usage:
+#   DOCKERHUB_USERNAME=myuser DOCKERHUB_PASSWORD=mytoken task docker:build-push
+# or export the credentials first:
+#   export DOCKERHUB_USERNAME=myuser
+#   export DOCKERHUB_PASSWORD=mytoken
+#   task docker:build-push
+#
+# If DOCKERHUB_USERNAME/DOCKERHUB_PASSWORD aren't set, you'll be prompted for
+# them interactively instead (each task that needs the username prompts for
+# it independently, so running docker:build-push with nothing set may prompt
+# for the username more than once).
+#
+# Override image name/tag the same way, e.g.:
+#   IMAGE_TAG=v1.2.3 task docker:build-push
+
+version: '3'
+
+vars:
+  IMAGE_NAME: '{{.IMAGE_NAME | default "sandbox-app-go"}}'
+  IMAGE_TAG: '{{.IMAGE_TAG | default "latest"}}'
+
+tasks:
+  docker:login:
+    desc: Log in to DockerHub, prompting for username/password if not set as env vars
+    silent: true
+    cmds:
+      - |
+        bash -c '
+          u="$DOCKERHUB_USERNAME"
+          p="$DOCKERHUB_PASSWORD"
+          if [ -z "$u" ]; then read -p "DockerHub username: " u; fi
+          if [ -z "$p" ]; then read -s -p "DockerHub password: " p; echo; fi
+          echo "$p" | docker login -u "$u" --password-stdin
+        '
+
+  docker:build:
+    desc: Build the docker image, tagged as <DOCKERHUB_USERNAME>/<IMAGE_NAME>:<IMAGE_TAG>
+    cmds:
+      - |
+        bash -c '
+          u="$DOCKERHUB_USERNAME"
+          if [ -z "$u" ]; then read -p "DockerHub username: " u; fi
+          docker build -t "$u/{{.IMAGE_NAME}}:{{.IMAGE_TAG}}" .
+        '
+
+  docker:push:
+    desc: Push the built image to DockerHub
+    deps: [docker:login]
+    cmds:
+      - |
+        bash -c '
+          u="$DOCKERHUB_USERNAME"
+          if [ -z "$u" ]; then read -p "DockerHub username: " u; fi
+          docker push "$u/{{.IMAGE_NAME}}:{{.IMAGE_TAG}}"
+        '
+
+  docker:build-push:
+    desc: Build the docker image and push it to DockerHub
+    cmds:
+      - task: docker:build
+      - task: docker:push
+
+  scan-secrets:
+    desc: Scan the full git history for secrets using gitleaks
+    cmds:
+      - gitleaks detect --source . --no-git --verbose --redact

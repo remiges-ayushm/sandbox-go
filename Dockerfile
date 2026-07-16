@@ -17,7 +17,6 @@ WORKDIR /app
 COPY --from=builder /out/server ./server
 # JSON fixtures are not compiled, copy them alongside the binary
 COPY internal/webhook/jsons ./internal/webhook/jsons
-COPY internal/webhook/responses ./internal/webhook/responses
 
 EXPOSE 3000 
 

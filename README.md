@@ -54,13 +54,39 @@ internal/webhook/jsons/<domain>/response/<action>.json
 ### Local build
 
 ```bash
-docker buildx build --platform linux/amd64,linux/arm64 -t sandbox-2.0-go:local --load .
+task docker:build
 ```
+
+This builds the image locally without pushing it. It still prompts for a DockerHub username (or
+reads `DOCKERHUB_USERNAME`) to construct the image tag
+`<DOCKERHUB_USERNAME>/<IMAGE_NAME>:<IMAGE_TAG>` (defaults to `sandbox-app-go:latest`), even though
+the image stays local.
 
 ### Push to Docker Hub
 
-This needs authorization to push to Docker Hub. You can use `docker login` to login to Docker Hub.
+This needs authorization to push to Docker Hub. Use the `task` targets defined in
+[`Taskfile.yml`](Taskfile.yml) instead of running `docker` directly:
 
 ```bash
-docker buildx build --platform linux/amd64,linux/arm64 -t fidedocker/sandbox-2.0-go:latest --push .
+DOCKERHUB_USERNAME=myuser DOCKERHUB_PASSWORD=mytoken task docker:build-push
 ```
+
+`docker:build-push` runs `docker:login`, `docker:build`, and `docker:push` in sequence. If
+`DOCKERHUB_USERNAME` / `DOCKERHUB_PASSWORD` aren't set as env vars, each task prompts for them
+interactively instead. The image is tagged `<DOCKERHUB_USERNAME>/<IMAGE_NAME>:<IMAGE_TAG>`, which
+defaults to `sandbox-app-go:latest` — override with `IMAGE_NAME=...` / `IMAGE_TAG=...`, e.g.:
+
+```bash
+IMAGE_TAG=v1.2.3 task docker:build-push
+```
+
+## Secret scanning
+
+Scan the working tree for secrets with [gitleaks](https://github.com/gitleaks/gitleaks) via the
+`scan-secrets` task:
+
+```bash
+task scan-secrets
+```
+
+This runs `gitleaks detect --source . --no-git --verbose --redact`.
