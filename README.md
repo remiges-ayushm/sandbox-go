@@ -82,8 +82,15 @@ IMAGE_TAG=v1.2.3 task docker:build-push
 
 ## Secret scanning
 
-Scan the working tree for secrets with [gitleaks](https://github.com/gitleaks/gitleaks) via the
-`scan-secrets` task:
+Scan the working tree for secrets with [gitleaks](https://github.com/gitleaks/gitleaks). Install
+it first:
+
+```bash
+brew install gitleaks                              # macOS
+go install github.com/zricethezav/gitleaks/v8@latest   # Go toolchain
+```
+
+Then run it via the `scan-secrets` task:
 
 ```bash
 task scan-secrets
